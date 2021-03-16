@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.number1_sub :
-                        if(num1_count >=0) {
+                        if(num1_count >0) {
                             num1_count -= 1;
                         }
                         num1.setText(Integer.toString(num1_count));
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.number2_sub :
-                        if(num2_count >=0) {
+                        if(num2_count >0) {
                             num2_count -= 1;
                         }
                         num2.setText(Integer.toString(num2_count));
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.number3_sub :
-                        if(num3_count >=0) {
+                        if(num3_count >0) {
                             num3_count -= 1;
                         }
                         num3.setText(Integer.toString(num3_count));

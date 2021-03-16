@@ -67,8 +67,8 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
-            android:text="1호"
-            android:textSize="50dp" />
+            android:text="첫째 하윤"
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/textView4"
@@ -77,8 +77,8 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
-            android:text="2호"
-            android:textSize="50dp" />
+            android:text="둘째 하린"
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/textView5"
@@ -87,8 +87,8 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
-            android:text="3호"
-            android:textSize="50dp" />
+            android:text="셋째 하준"
+            android:textSize="30dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -105,6 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:textSize="50dp"/>
@@ -113,6 +114,7 @@
             android:id="@+id/number2_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:layout_weight="1"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
@@ -122,6 +124,7 @@
             android:id="@+id/number3_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:layout_weight="1"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
@@ -208,11 +211,11 @@
         <TextView
             android:id="@+id/finish_time1"
             android:layout_width="match_parent"
-            android:layout_height="92dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:textSize="50dp" />
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/finish_time2"
@@ -221,7 +224,7 @@
             android:layout_weight="1"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:textSize="50dp"/>
+            android:textSize="30dp"/>
 
         <TextView
             android:id="@+id/finish_time3"
@@ -230,7 +233,7 @@
             android:layout_weight="1"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:textSize="50dp"/>
+            android:textSize="30dp"/>
     </LinearLayout>
 
 </LinearLayout>
