@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,13 @@ public class MainActivity extends AppCompatActivity {
     static final String KEY_NUM2 = "KEY_NUM2";
     static final String KEY_NUM3 = "KEY_NUM3";
 
+    static final String KEY_NUM4 = "KEY_NUM4";
+    static final String KEY_NUM5 = "KEY_NUM5";
+    static final String KEY_NUM6 = "KEY_NUM6";
+    static final String KEY_NUM7 = "KEY_NUM7";
+    static final String KEY_NUM8 = "KEY_NUM8";
+    static final String KEY_NUM9 = "KEY_NUM9";
+
     long m_start = 0;
     long m_end1 = 0, m_end2 = 0, m_end3 = 0;
 
@@ -37,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         num1 = findViewById(R.id.number1_count);
         num2 = findViewById(R.id.number2_count);
@@ -67,13 +77,29 @@ public class MainActivity extends AppCompatActivity {
             String data1 = savedInstanceState.getString(KEY_NUM1);
             String data2 = savedInstanceState.getString(KEY_NUM2);
             String data3 = savedInstanceState.getString(KEY_NUM3);
-            start_time.setText(time);
+            m_start = Long.parseLong(time);
+            Date date = new Date(m_start);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
+            start_time.setText(dateFormat.format(date));
             m_num1_count = Integer.parseInt(data1);
             m_num2_count = Integer.parseInt(data2);
             m_num3_count = Integer.parseInt(data3);
             num1.setText(data1);
             num2.setText(data2);
             num3.setText(data3);
+
+            String data4 = savedInstanceState.getString(KEY_NUM4);
+            String data5 = savedInstanceState.getString(KEY_NUM5);
+            String data6 = savedInstanceState.getString(KEY_NUM6);
+            String data7 = savedInstanceState.getString(KEY_NUM7);
+            String data8 = savedInstanceState.getString(KEY_NUM8);
+            String data9 = savedInstanceState.getString(KEY_NUM9);
+            finish_tim1.setText(data4);
+            finish_tim2.setText(data5);
+            finish_tim3.setText(data6);
+            time_diff1.setText(data7);
+            time_diff2.setText(data8);
+            time_diff3.setText(data9);
 
         }
 
@@ -170,15 +196,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        String time = start_time.getText().toString();
+        String time = Long.toString(m_start);
         String data1 = num1.getText().toString();
         String data2 = num2.getText().toString();
         String data3 = num3.getText().toString();
-
         outState.putString(KEY_TIME, time);
         outState.putString(KEY_NUM1, data1);
         outState.putString(KEY_NUM2, data2);
         outState.putString(KEY_NUM3, data3);
+
+        String data4 = finish_tim1.getText().toString();
+        String data5 = finish_tim2.getText().toString();
+        String data6 = finish_tim3.getText().toString();
+        String data7 = time_diff1.getText().toString();
+        String data8 = time_diff2.getText().toString();
+        String data9 = time_diff3.getText().toString();
+        outState.putString(KEY_NUM4, data4);
+        outState.putString(KEY_NUM5, data5);
+        outState.putString(KEY_NUM6, data6);
+        outState.putString(KEY_NUM7, data7);
+        outState.putString(KEY_NUM8, data8);
+        outState.putString(KEY_NUM9, data9);
     }
 
     @Override
