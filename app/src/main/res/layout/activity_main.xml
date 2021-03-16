@@ -35,7 +35,6 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:layout_weight="1"
-            android:paddingTop="20dp"
             android:text="시간"
             android:textSize="50dp" />
 
@@ -44,7 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:paddingTop="20dp"
             android:layout_weight="1"
             android:textSize="50dp"
             android:text="시작" />
@@ -66,7 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:paddingTop="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:text="첫째 하윤"
             android:textSize="30dp" />
 
@@ -76,7 +75,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:paddingTop="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:text="둘째 하린"
             android:textSize="30dp" />
 
@@ -86,7 +86,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:paddingTop="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:text="셋째 하준"
             android:textSize="30dp" />
     </LinearLayout>
@@ -213,6 +214,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:textSize="30dp" />
@@ -222,6 +224,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:textSize="30dp"/>
@@ -231,6 +234,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:textSize="30dp"/>
@@ -250,6 +254,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:textSize="30dp" />
@@ -259,6 +264,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:textSize="30dp"/>
@@ -268,6 +274,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:textSize="30dp"/>
