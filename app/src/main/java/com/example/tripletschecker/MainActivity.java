@@ -119,9 +119,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("test", "num1_add");
                         if (m_num1_count == 10) {
                             m_end1 = System.currentTimeMillis();
-                            Date date = new Date(m_end1);
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-                            finish_tim1.setText(dateFormat.format(date));
+                            finish_tim1.setText(timeformat(m_end1, "HH:mm:ss"));
                             time_diff1.setText(time_diff(m_start, m_end1));
                         }
                         break;
@@ -134,9 +132,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("test", "num2_add");
                         if (m_num2_count == 10) {
                             m_end2 = System.currentTimeMillis();
-                            Date date = new Date(m_end2);
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-                            finish_tim2.setText(dateFormat.format(date));
+                            finish_tim2.setText(timeformat(m_end2, "HH:mm:ss"));
                             time_diff2.setText(time_diff(m_start, m_end2));
                         }
                         break;
@@ -149,9 +145,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("test", "num3_add");
                         if (m_num3_count == 10) {
                             m_end3 = System.currentTimeMillis();
-                            Date date = new Date(m_end3);
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-                            finish_tim3.setText(dateFormat.format(date));
+                            finish_tim3.setText(timeformat(m_end3, "HH:mm:ss"));
                             time_diff3.setText(time_diff(m_start, m_end3));
                         }
                         break;
@@ -259,10 +253,7 @@ public class MainActivity extends AppCompatActivity {
                 time_diff3.setText("");
 
                 m_start = System.currentTimeMillis();
-                Date date = new Date(m_start);
-                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-                String start_tim = dateFormat.format(date);
-                start_time.setText(start_tim);
+                start_time.setText(timeformat(m_start, "HH:mm:ss"));
                 Toast.makeText(MainActivity.this, "리셋하였습니다.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -294,6 +285,11 @@ public class MainActivity extends AppCompatActivity {
 
         String returnTime = hour + ":" + min + ":" + sec;
         return returnTime;
+    }
 
+    String timeformat(long time, String format){
+        Date date = new Date(time);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        return dateFormat.format(date);
     }
 }
