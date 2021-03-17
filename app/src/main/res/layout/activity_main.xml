@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:foregroundGravity="center"
         android:gravity="center_horizontal"
-        android:paddingTop="20dp"
         android:text="삼둥이 태동 체크"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
