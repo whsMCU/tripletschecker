@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         mAdView.loadAd(adRequest);
         AdView adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER); //광고 사이즈는 배너 사이즈로 설정
-        adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+        adView.setAdUnitId("ca-app-pub-9708062265777742/4628892374");
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
