@@ -11,9 +11,12 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/background_light"
+        android:backgroundTint="@color/white"
         android:foregroundGravity="center"
         android:gravity="center_horizontal"
         android:text="삼둥이 태동 체크"
+        android:textColor="@color/black"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,20 +35,22 @@
             android:id="@+id/start_Time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:background="@drawable/edge"
             android:layout_weight="1"
+            android:background="@drawable/edge"
+            android:gravity="center_horizontal"
             android:text="시간"
+            android:textColor="@color/black"
             android:textSize="50dp" />
 
         <Button
             android:id="@+id/start_Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:layout_weight="1"
-            android:textSize="50dp"
-            android:text="시작" />
+            android:backgroundTint="@color/teal_200"
+            android:gravity="center_horizontal"
+            android:text="시작"
+            android:textSize="50dp" />
     </LinearLayout>
 
 
@@ -68,6 +73,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="첫째 하윤"
+            android:textColor="@color/black"
             android:textSize="30dp" />
 
         <TextView
@@ -80,6 +86,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="둘째 하린"
+            android:textColor="@color/black"
             android:textSize="30dp" />
 
         <TextView
@@ -92,6 +99,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="셋째 하준"
+            android:textColor="@color/black"
             android:textSize="30dp" />
     </LinearLayout>
 
@@ -113,29 +121,32 @@
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:textSize="50dp"/>
+            android:textColor="@color/black"
+            android:textSize="50dp" />
 
         <TextView
             android:id="@+id/number2_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:background="@drawable/edge"
             android:layout_weight="1"
+            android:background="@drawable/edge"
+            android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:textSize="50dp"/>
+            android:textColor="@color/black"
+            android:textSize="50dp" />
 
         <TextView
             android:id="@+id/number3_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:background="@drawable/edge"
             android:layout_weight="1"
+            android:background="@drawable/edge"
+            android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:textSize="50dp"/>
+            android:textColor="@color/black"
+            android:textSize="50dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -152,24 +163,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="50dp"
-            android:text="+" />
+            android:backgroundTint="@color/teal_200"
+            android:text="+"
+            android:textSize="50dp" />
 
         <Button
             android:id="@+id/number2_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="50dp"
-            android:text="+" />
+            android:backgroundTint="@color/teal_200"
+            android:text="+"
+            android:textSize="50dp" />
 
         <Button
             android:id="@+id/number3_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="50dp"
-            android:text="+" />
+            android:backgroundTint="@color/teal_200"
+            android:text="+"
+            android:textSize="50dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -186,24 +200,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="50dp"
-            android:text="-" />
+            android:backgroundTint="@color/teal_200"
+            android:text="-"
+            android:textSize="50dp" />
 
         <Button
             android:id="@+id/number2_sub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="50dp"
-            android:text="-" />
+            android:backgroundTint="@color/teal_200"
+            android:text="-"
+            android:textSize="50dp" />
 
         <Button
             android:id="@+id/number3_sub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="50dp"
-            android:text="-" />
+            android:backgroundTint="@color/teal_200"
+            android:text="-"
+            android:textSize="50dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -224,6 +241,7 @@
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
+            android:textColor="@color/black"
             android:textSize="30dp" />
 
         <TextView
@@ -235,7 +253,8 @@
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:textSize="30dp"/>
+            android:textColor="@color/black"
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/finish_time3"
@@ -246,7 +265,8 @@
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:textSize="30dp"/>
+            android:textColor="@color/black"
+            android:textSize="30dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -267,6 +287,7 @@
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
+            android:textColor="@color/black"
             android:textSize="30dp" />
 
         <TextView
@@ -278,7 +299,8 @@
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:textSize="30dp"/>
+            android:textColor="@color/black"
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/time_diff3"
@@ -289,7 +311,8 @@
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:textSize="30dp"/>
+            android:textColor="@color/black"
+            android:textSize="30dp" />
     </LinearLayout>
 
 </LinearLayout>
