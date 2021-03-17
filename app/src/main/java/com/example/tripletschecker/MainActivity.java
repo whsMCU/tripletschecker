@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                         if (m_num1_count == 10) {
                             m_end1 = System.currentTimeMillis();
                             Date date = new Date(m_end1);
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
                             finish_tim1.setText(dateFormat.format(date));
                             time_diff1.setText(time_diff(m_start, m_end1));
                         }
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                         if (m_num2_count == 10) {
                             m_end2 = System.currentTimeMillis();
                             Date date = new Date(m_end2);
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
                             finish_tim2.setText(dateFormat.format(date));
                             time_diff2.setText(time_diff(m_start, m_end2));
                         }
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                         if (m_num3_count == 10) {
                             m_end3 = System.currentTimeMillis();
                             Date date = new Date(m_end3);
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
                             finish_tim3.setText(dateFormat.format(date));
                             time_diff3.setText(time_diff(m_start, m_end3));
                         }
@@ -250,9 +250,17 @@ public class MainActivity extends AppCompatActivity {
                 num1.setText(Integer.toString(m_num1_count));
                 num2.setText(Integer.toString(m_num2_count));
                 num3.setText(Integer.toString(m_num3_count));
+
+                finish_tim1.setText("");
+                finish_tim2.setText("");
+                finish_tim3.setText("");
+                time_diff1.setText("");
+                time_diff2.setText("");
+                time_diff3.setText("");
+
                 m_start = System.currentTimeMillis();
                 Date date = new Date(m_start);
-                SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
                 String start_tim = dateFormat.format(date);
                 start_time.setText(start_tim);
                 Toast.makeText(MainActivity.this, "리셋하였습니다.", Toast.LENGTH_SHORT).show();
