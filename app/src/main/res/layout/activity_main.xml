@@ -63,7 +63,7 @@
             android:gravity="center_horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="첫째 하윤"
+            android:text="첫째"
             android:textColor="@color/black"
             android:textSize="30dp" />
 
@@ -76,7 +76,7 @@
             android:gravity="center_horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="둘째 하린"
+            android:text="둘째"
             android:textColor="@color/black"
             android:textSize="30dp" />
 
@@ -89,7 +89,7 @@
             android:gravity="center_horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="셋째 하준"
+            android:text="셋째"
             android:textColor="@color/black"
             android:textSize="30dp" />
     </LinearLayout>
