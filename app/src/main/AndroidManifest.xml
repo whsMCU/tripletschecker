@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tripletschecker">
+    package="com.checker.tripletschecker">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,7 +17,7 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9708062265777742~2194300728"/>
 
-        <activity android:name=".MainActivity" >
+        <activity android:name="com.checker.tripletschecker.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
