@@ -5,9 +5,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -100,9 +103,7 @@ public class MainActivity extends AppCompatActivity {
             String data2 = savedInstanceState.getString(KEY_NUM2);
             String data3 = savedInstanceState.getString(KEY_NUM3);
             m_start = Long.parseLong(time);
-            Date date = new Date(m_start);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-            start_time.setText(dateFormat.format(date));
+            start_time.setText(timeformat(m_start, "HH:mm:ss"));
             m_num1_count = Integer.parseInt(data1);
             m_num2_count = Integer.parseInt(data2);
             m_num3_count = Integer.parseInt(data3);
@@ -206,6 +207,28 @@ public class MainActivity extends AppCompatActivity {
         num2_sub.setOnClickListener(Listener);
         num3_sub.setOnClickListener(Listener);
         start_button.setOnClickListener(Listener);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_option, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.description:
+                Intent intent = new Intent(this, DescriptionActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.logout:
+                finish();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

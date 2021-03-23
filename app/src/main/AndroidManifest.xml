@@ -11,19 +11,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_baby_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Tripletschecker" >
+        android:theme="@style/Theme.Tripletschecker">
+        <activity android:name=".DescriptionActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9708062265777742~2194300728"/>
+            android:value="ca-app-pub-9708062265777742~2194300728" />
 
-        <activity android:name="com.checker.tripletschecker.MainActivity" >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
