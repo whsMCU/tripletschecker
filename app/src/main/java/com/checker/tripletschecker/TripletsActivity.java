@@ -27,7 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class TripletsActivity extends AppCompatActivity {
+public class TripletsActivity extends AppCompatActivity implements SettingFragment.Max_Movement_SetListener {
 
     private AdView mAdView;
 
@@ -43,8 +43,11 @@ public class TripletsActivity extends AppCompatActivity {
     static final String KEY_TIME_DIFF2 = "KEY_TIME_DIFF2";
     static final String KEY_TIME_DIFF3 = "KEY_TIME_DIFF3";
 
+    static final String KEY_MAX_MOVEMENT = "KEY_MAX_MOVEMENT";
+
     long m_start = 0;
     long m_end1 = 0, m_end2 = 0, m_end3 = 0;
+    int max_movement = 10;
 
     private long m_backKeyPressedTime = 0;
 
@@ -103,7 +106,7 @@ public class TripletsActivity extends AppCompatActivity {
             String data2 = savedInstanceState.getString(KEY_NUM2);
             String data3 = savedInstanceState.getString(KEY_NUM3);
             m_start = Long.parseLong(time);
-            start_time.setText(timeformat(m_start, "HH:mm:ss"));
+            start_time.setText(timeformet(m_start, "HH:mm:ss"));
             m_num1_count = Integer.parseInt(data1);
             m_num2_count = Integer.parseInt(data2);
             m_num3_count = Integer.parseInt(data3);
@@ -124,6 +127,8 @@ public class TripletsActivity extends AppCompatActivity {
             time_diff2.setText(time_diff_2);
             time_diff3.setText(time_diff_3);
 
+            max_movement = savedInstanceState.getInt(KEY_MAX_MOVEMENT);
+
         }
 
         View.OnClickListener Listener = new Button.OnClickListener() {
@@ -135,58 +140,94 @@ public class TripletsActivity extends AppCompatActivity {
                         break;
 
                     case R.id.number1_add:
-                        if (m_num1_count < 10) {
+                        if(m_start == 0){
+                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        if (m_num1_count < max_movement) {
                             m_num1_count += 1;
                         }
                         num1.setText(Integer.toString(m_num1_count));
-                        if (m_num1_count == 10) {
+                        if (m_num1_count == max_movement) {
                             m_end1 = System.currentTimeMillis();
-                            finish_tim1.setText(timeformat(m_end1, "HH:mm:ss"));
+                            finish_tim1.setText(timeformet(m_end1, "HH:mm:ss"));
                             time_diff1.setText(time_diff(m_start, m_end1));
                         }
                         break;
 
                     case R.id.number2_add:
-                        if (m_num2_count < 10) {
+                        if(m_start == 0){
+                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        if (m_num2_count < max_movement) {
                             m_num2_count += 1;
                         }
                         num2.setText(Integer.toString(m_num2_count));
-                        if (m_num2_count == 10) {
+                        if (m_num2_count == max_movement) {
                             m_end2 = System.currentTimeMillis();
-                            finish_tim2.setText(timeformat(m_end2, "HH:mm:ss"));
+                            finish_tim2.setText(timeformet(m_end2, "HH:mm:ss"));
                             time_diff2.setText(time_diff(m_start, m_end2));
                         }
                         break;
 
                     case R.id.number3_add:
-                        if (m_num3_count < 10) {
+                        if(m_start == 0){
+                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        if (m_num3_count < max_movement) {
                             m_num3_count += 1;
                         }
                         num3.setText(Integer.toString(m_num3_count));
-                        if (m_num3_count == 10) {
+                        if (m_num3_count == max_movement) {
                             m_end3 = System.currentTimeMillis();
-                            finish_tim3.setText(timeformat(m_end3, "HH:mm:ss"));
+                            finish_tim3.setText(timeformet(m_end3, "HH:mm:ss"));
                             time_diff3.setText(time_diff(m_start, m_end3));
                         }
                         break;
 
                     case R.id.number1_sub:
+                        if(m_start == 0){
+                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
                         if (m_num1_count > 0) {
                             m_num1_count -= 1;
+                        }
+                        if (m_num1_count < max_movement){
+                            finish_tim1.setText("");
+                            time_diff1.setText("");
                         }
                         num1.setText(Integer.toString(m_num1_count));
                         break;
 
                     case R.id.number2_sub:
+                        if(m_start == 0){
+                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
                         if (m_num2_count > 0) {
                             m_num2_count -= 1;
+                        }
+                        if (m_num2_count < max_movement){
+                            finish_tim2.setText("");
+                            time_diff2.setText("");
                         }
                         num2.setText(Integer.toString(m_num2_count));
                         break;
 
                     case R.id.number3_sub:
+                        if(m_start == 0){
+                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
                         if (m_num3_count > 0) {
                             m_num3_count -= 1;
+                        }
+                        if (m_num3_count < max_movement){
+                            finish_tim3.setText("");
+                            time_diff3.setText("");
                         }
                         num3.setText(Integer.toString(m_num3_count));
                         break;
@@ -204,6 +245,27 @@ public class TripletsActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onMax_Movement_Set(int max_movement) {
+        this.max_movement = max_movement;
+        m_start = 0;
+        m_num1_count = 0;
+        m_num2_count = 0;
+        m_num3_count = 0;
+
+        start_time.setText("");
+        num1.setText(Integer.toString(m_num1_count));
+        num2.setText(Integer.toString(m_num2_count));
+        num3.setText(Integer.toString(m_num3_count));
+
+        finish_tim1.setText("");
+        finish_tim2.setText("");
+        finish_tim3.setText("");
+        time_diff1.setText("");
+        time_diff2.setText("");
+        time_diff3.setText("");
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_option, menu);
         return super.onCreateOptionsMenu(menu);
@@ -215,6 +277,10 @@ public class TripletsActivity extends AppCompatActivity {
             case R.id.description:
                 Intent intent = new Intent(this, DescriptionActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.setting:
+                new SettingFragment().show(getSupportFragmentManager(), "SettingFragment");
                 break;
 
             case R.id.logout:
@@ -250,6 +316,8 @@ public class TripletsActivity extends AppCompatActivity {
         outState.putString(KEY_TIME_DIFF1, time_diff1_data1);
         outState.putString(KEY_TIME_DIFF2, time_diff1_data2);
         outState.putString(KEY_TIME_DIFF3, time_diff1_data3);
+
+        outState.putInt(KEY_MAX_MOVEMENT, max_movement);
     }
 
     @Override
@@ -257,14 +325,14 @@ public class TripletsActivity extends AppCompatActivity {
         //기존의 뒤로가기 버튼의 기능 제거
         //super.onBackPressed();
 
-        if (System.currentTimeMillis() > m_backKeyPressedTime + 2000) {
+        if (System.currentTimeMillis() > m_backKeyPressedTime + 1000) {
             m_backKeyPressedTime = System.currentTimeMillis();
             Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 메뉴로 이동 됩니다.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        //2초 이내에 뒤로가기 버튼을 한번 더 클릭시 finish()
-        if (System.currentTimeMillis() <= m_backKeyPressedTime + 2000) {
+        //1초 이내에 뒤로가기 버튼을 한번 더 클릭시 finish()
+        if (System.currentTimeMillis() <= m_backKeyPressedTime + 1000) {
             finish();
         }
     }
@@ -277,6 +345,7 @@ public class TripletsActivity extends AppCompatActivity {
         builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                m_start = 0;
                 m_num1_count = 0;
                 m_num2_count = 0;
                 m_num3_count = 0;
@@ -292,7 +361,7 @@ public class TripletsActivity extends AppCompatActivity {
                 time_diff3.setText("");
 
                 m_start = System.currentTimeMillis();
-                start_time.setText(timeformat(m_start, "HH:mm:ss"));
+                start_time.setText(timeformet(m_start, "HH:mm:ss"));
                 Toast.makeText(TripletsActivity.this, "리셋하였습니다.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -326,7 +395,7 @@ public class TripletsActivity extends AppCompatActivity {
         return returnTime;
     }
 
-    String timeformat(long time, String format){
+    String timeformet(long time, String format){
         Date date = new Date(time);
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.format(date);

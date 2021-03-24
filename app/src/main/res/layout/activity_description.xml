@@ -57,4 +57,13 @@
         android:text="5. 총 태동수가 10번이 되었을때 시간과 경과시간이 표시됩니다."
         android:textSize="20dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="6. 총 태동수는 체크화면의 오른쪽 상단 메뉴바>세팅에서 변경 할 수 있습니다."
+        android:textSize="20dp"/>
+
 </LinearLayout>
