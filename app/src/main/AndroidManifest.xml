@@ -12,8 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_baby_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tripletschecker">
-        <activity android:name=".DescriptionActivity"></activity>
-
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9708062265777742~2194300728" />
@@ -25,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".DescriptionActivity"></activity>
+        <activity android:name=".TripletsActivity"></activity>
+        <activity android:name=".QuadrupletsActivity"></activity>
 
     </application>
 
