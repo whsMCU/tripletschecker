@@ -18,4 +18,27 @@
     <string name="description_4">4. Whenever you feel a movement, press the + button.(If incorrectly checked - press button to correct.)</string>
     <string name="description_5">5. Time and elapsed time are displayed when the total number of strokes is 10.</string>
     <string name="description_6">6. The total number of strokes can be changed in the upper right menu bar>set of the check screen.</string>
+    <string name="back_button">Press the \'Back\' button one more time and it will end.</string>
+    <string name="alert">Warning!</string>
+    <string name="alert_message">Are you sure you want to start or reset?</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="cancel">CANCEL</string>
+    <string name="start_message">Start the Kick Check.</string>
+    <string name="reset_cancel">Reset cancelled.</string>
+    <string name="start_button_press">Please press the start button first.</string>
+    <string name="termination">Termination</string>
+    <string name="description_menu">INSTRUCTION</string>
+    <string name="setting">SETTING</string>
+    <string name="strat_time">Start Time</string>
+    <string name="sortation">Sortation</string>
+    <string name="count">Count</string>
+    <string name="add">ADD</string>
+    <string name="sub">SUB</string>
+    <string name="end_time">End Time</string>
+    <string name="duration">Duration</string>
+    <string name="twin_title">Twins Kick Checker</string>
+    <string name="triplets_title">Triplets Kick Checker</string>
+    <string name="quadruplets_title">Quadruplets Kick Checker</string>
+    <string name="max_movement_value">Maximum Kick Count Setting</string>
 </resources>

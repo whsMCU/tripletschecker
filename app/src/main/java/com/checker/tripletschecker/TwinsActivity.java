@@ -125,7 +125,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
                     case R.id.number1_add:
                         if(m_start == 0){
-                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.start_button_press, Toast.LENGTH_SHORT).show();
                             break;
                         }
                         if (m_num1_count < max_movement) {
@@ -141,7 +141,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
                     case R.id.number2_add:
                         if(m_start == 0){
-                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.start_button_press, Toast.LENGTH_SHORT).show();
                             break;
                         }
                         if (m_num2_count < max_movement) {
@@ -157,7 +157,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
                     case R.id.number1_sub:
                         if(m_start == 0){
-                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.start_button_press, Toast.LENGTH_SHORT).show();
                             break;
                         }
                         if (m_num1_count > 0) {
@@ -172,7 +172,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
                     case R.id.number2_sub:
                         if(m_start == 0){
-                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.start_button_press, Toast.LENGTH_SHORT).show();
                             break;
                         }
                         if (m_num2_count > 0) {
@@ -268,7 +268,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
         if (System.currentTimeMillis() > m_backKeyPressedTime + 2000) {
             m_backKeyPressedTime = System.currentTimeMillis();
-            Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 메뉴로 이동 됩니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.back_button, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -280,10 +280,10 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
     void showMessage_Start() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("앗!");
-        builder.setMessage("정말 시작 또는 리셋 하시겠습니까?");
+        builder.setTitle(R.string.alert);
+        builder.setMessage(R.string.alert_message);
         builder.setIcon(android.R.drawable.ic_dialog_alert);
-        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 m_start = 0;
@@ -299,21 +299,21 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
                 m_start = System.currentTimeMillis();
                 start_time.setText(timeformet(m_start, "HH:mm:ss"));
-                Toast.makeText(TwinsActivity.this, "리셋하였습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TwinsActivity.this, R.string.start_message, Toast.LENGTH_SHORT).show();
             }
         });
 
-        builder.setNeutralButton("취소", new DialogInterface.OnClickListener() {
+        builder.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
             }
         });
 
-        builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(TwinsActivity.this, "리셋을 취소하였습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TwinsActivity.this, R.string.reset_cancel, Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -13,12 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:autoSizeTextType="uniform"
         android:background="@drawable/edge"
-        android:backgroundTint="@color/white"
         android:foregroundGravity="center"
         android:gravity="center_horizontal"
-        android:autoSizeTextType="uniform"
-        android:text="@string/title"
+        android:text="@string/twin_title"
         android:textColor="@color/black"
         android:textSize="50dp" />
 
@@ -34,12 +33,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:autoSizeTextType="uniform"
             android:background="@drawable/edge"
             android:backgroundTint="@color/white"
             android:gravity="center_horizontal"
+            android:hint="@string/strat_time"
             android:textColor="@color/black"
-            android:textSize="50dp" />
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/start_Button"
@@ -67,10 +66,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:autoSizeTextType="uniform"
             android:background="@drawable/edge"
             android:gravity="center_horizontal|center_vertical"
+            android:padding="10dp"
             android:text="@string/first"
-            android:autoSizeTextType="uniform"
             android:textColor="@color/black"
             android:textSize="30dp" />
 
@@ -82,6 +82,7 @@
             android:autoSizeTextType="uniform"
             android:background="@drawable/edge"
             android:gravity="center_horizontal|center_vertical"
+            android:padding="10dp"
             android:text="@string/second"
             android:textColor="@color/black"
             android:textSize="30dp" />
@@ -100,8 +101,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:autoSizeTextType="uniform"
             android:background="@drawable/edge"
+            android:hint="@string/count"
             android:gravity="center_horizontal|center_vertical"
             android:textColor="@color/black"
             android:textSize="50dp" />
@@ -111,7 +112,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:autoSizeTextType="uniform"
+            android:hint="@string/count"
             android:background="@drawable/edge"
             android:gravity="center_horizontal|center_vertical"
             android:textColor="@color/black"
@@ -189,8 +190,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:autoSizeTextType="uniform"
             android:background="@drawable/edge"
+            android:hint="@string/end_time"
             android:gravity="center_horizontal|center_vertical"
             android:textColor="@color/black"
             android:textSize="30dp" />
@@ -200,7 +201,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:autoSizeTextType="uniform"
+            android:hint="@string/end_time"
             android:background="@drawable/edge"
             android:gravity="center_horizontal|center_vertical"
             android:textColor="@color/black"
@@ -220,7 +221,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:autoSizeTextType="uniform"
+            android:hint="@string/duration"
             android:background="@drawable/edge"
             android:gravity="center_horizontal|center_vertical"
             android:textColor="@color/black"
@@ -231,7 +232,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:autoSizeTextType="uniform"
+            android:hint="@string/duration"
             android:background="@drawable/edge"
             android:gravity="center_horizontal|center_vertical"
             android:textColor="@color/black"

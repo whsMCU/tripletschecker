@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (System.currentTimeMillis() > m_backKeyPressedTime + 2000) {
             m_backKeyPressedTime = System.currentTimeMillis();
-            Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.back_button, Toast.LENGTH_SHORT).show();
             return;
         }
 

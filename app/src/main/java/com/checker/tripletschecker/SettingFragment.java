@@ -37,7 +37,7 @@ public class SettingFragment extends DialogFragment {
         max_movement.add("30");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("최대 태동 횟수 설정");
+        builder.setTitle(R.string.max_movement_value);
         builder.setItems(max_movement.toArray(new String[0]), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

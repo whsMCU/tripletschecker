@@ -18,4 +18,27 @@
     <string name="description_4">4. 태동이 느껴질때마다 + 버튼을 누릅니다.(만약 잘못 체크되었을 경우 - 버튼을 눌러 정정합니다.)</string>
     <string name="description_5">5. 총 태동수가 10번이 되었을때 시간과 경과시간이 표시됩니다.</string>
     <string name="description_6">6. 총 태동수는 체크화면의 오른쪽 상단 메뉴바>세팅에서 변경 할 수 있습니다.</string>
+    <string name="back_button">\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.</string>
+    <string name="alert">경고!</string>
+    <string name="alert_message">정말 시작 또는 리셋 하시겠습니까?</string>
+    <string name="yes">예</string>
+    <string name="no">아니요</string>
+    <string name="cancel">취소</string>
+    <string name="start_message">태동검사를 시작합니다.</string>
+    <string name="reset_cancel">리셋을 취소하였습니다.</string>
+    <string name="start_button_press">시작버튼을 먼저 눌러주세요</string>
+    <string name="termination">종료</string>
+    <string name="description_menu">설명서</string>
+    <string name="setting">설정</string>
+    <string name="strat_time">시작시간</string>
+    <string name="sortation">구분</string>
+    <string name="count">카운트</string>
+    <string name="add">더하기</string>
+    <string name="sub">빼기</string>
+    <string name="end_time">종료시간</string>
+    <string name="duration">소요시간</string>
+    <string name="twin_title">쌍둥이 태동 체크</string>
+    <string name="triplets_title">세쌍둥이 태동 체크</string>
+    <string name="quadruplets_title">네쌍둥이 태동 체크</string>
+    <string name="max_movement_value">최대 태동 횟수 설정</string>
 </resources>
