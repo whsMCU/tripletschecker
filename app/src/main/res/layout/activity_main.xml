@@ -13,11 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:autoSizeTextType="uniform"
         android:background="@drawable/edge"
         android:backgroundTint="@color/white"
         android:foregroundGravity="center"
         android:gravity="center_horizontal"
-        android:text="삼둥이 태동 체크"
+        android:text="@string/title"
         android:textColor="@color/black"
         android:textSize="50dp" />
 
@@ -26,8 +27,21 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
+        android:layout_weight="7"
         app:srcCompat="@drawable/baby" />
+
+
+        <Button
+            android:id="@+id/bt_Twins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button"
+            android:backgroundTint="@color/teal_200"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:autoSizeTextType="uniform"
+            android:text="@string/twins"
+            android:textSize="50dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +56,8 @@
             android:background="@drawable/round_button"
             android:backgroundTint="@color/teal_200"
             android:gravity="center_horizontal"
-            android:text="세쌍둥이"
+            android:autoSizeTextType="uniform"
+            android:text="@string/triplets"
             android:textSize="50dp" />
         <Button
             android:id="@+id/bt_Quad"
@@ -52,7 +67,8 @@
             android:background="@drawable/round_button"
             android:backgroundTint="@color/teal_200"
             android:gravity="center_horizontal"
-            android:text="네쌍둥이"
+            android:autoSizeTextType="uniform"
+            android:text="@string/quadruplets"
             android:textSize="50dp" />
     </LinearLayout>
 

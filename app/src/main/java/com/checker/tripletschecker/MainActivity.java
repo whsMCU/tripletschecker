@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AdView mAdView;
 
-    Button triplets_button, quadruplets_button;
+    Button twins_button, triplets_button, quadruplets_button;
 
     long m_backKeyPressedTime;
 
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         adView.setAdSize(AdSize.BANNER); //광고 사이즈는 배너 사이즈로 설정
         adView.setAdUnitId("ca-app-pub-9708062265777742/4628892374");
 
-
+        twins_button = (Button) findViewById(R.id.bt_Twins);
         triplets_button = (Button) findViewById(R.id.bt_Triple);
         quadruplets_button = (Button) findViewById(R.id.bt_Quad);
 
@@ -65,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
+                    case R.id.bt_Twins:
+                        intent = new Intent(getApplicationContext(), TwinsActivity.class);
+                        startActivity(intent);
+                        break;
+
                     case R.id.bt_Triple:
                         intent = new Intent(getApplicationContext(), TripletsActivity.class);
                         startActivity(intent);
@@ -77,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-
+        twins_button.setOnClickListener(Listener);
         triplets_button.setOnClickListener(Listener);
         quadruplets_button.setOnClickListener(Listener);
     }

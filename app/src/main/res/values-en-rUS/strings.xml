@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MultiplesKickChecker</string>
+    <string name="twins">Twins</string>
+    <string name="triplets">Triplets</string>
+    <string name="quadruplets">Quadruplets</string>
+    <string name="title">Multiples Kick Checker</string>
+    <string name="time">Time</string>
+    <string name="start">START</string>
+    <string name="first">First</string>
+    <string name="second">Second</string>
+    <string name="third">Third</string>
+    <string name="fourth">Fourth</string>
+    <string name="description_title">Multiples Kick Checker Description</string>
+    <string name="description_1">1. Self-check the number of strokes once a day.</string>
+    <string name="description_2">2. Record the time taken until the number of strokes reaches 10.</string>
+    <string name="description_3">3. Press the Start button to display the start time of the start inspection.</string>
+    <string name="description_4">4. Whenever you feel a movement, press the + button.(If incorrectly checked - press button to correct.)</string>
+    <string name="description_5">5. Time and elapsed time are displayed when the total number of strokes is 10.</string>
+    <string name="description_6">6. The total number of strokes can be changed in the upper right menu bar>set of the check screen.</string>
+</resources>

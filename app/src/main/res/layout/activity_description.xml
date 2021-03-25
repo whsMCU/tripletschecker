@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="삼둥이태동체크설명서"
+        android:text="@string/description_title"
         android:textSize="30dp"/>
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="1. 하루에 한번 태동수를 자가 체크합니다."
+        android:text="@string/description_1"
         android:textSize="20dp"/>
     <TextView
         android:layout_width="wrap_content"
@@ -27,16 +27,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="2. 태동수가 10번 될 때까지 소요된 시간을 기록합니다."
-        android:textSize="20dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="3. 시작버튼을 누르면 태동검사 시작시간이 표시됩니다."
+        android:text="@string/description_2"
         android:textSize="20dp"/>
 
     <TextView
@@ -45,7 +36,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="4. 태동이 느껴질때마다 + 버튼을 누릅니다.(만약 잘못 체크되었을 경우 - 버튼을 눌러 정정합니다.)"
+        android:text="@string/description_3"
         android:textSize="20dp"/>
 
     <TextView
@@ -54,7 +45,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="5. 총 태동수가 10번이 되었을때 시간과 경과시간이 표시됩니다."
+        android:text="@string/description_4"
         android:textSize="20dp"/>
 
     <TextView
@@ -63,7 +54,16 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="6. 총 태동수는 체크화면의 오른쪽 상단 메뉴바>세팅에서 변경 할 수 있습니다."
+        android:text="@string/description_5"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/description_6"
         android:textSize="20dp"/>
 
 </LinearLayout>

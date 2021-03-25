@@ -325,14 +325,14 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
         //기존의 뒤로가기 버튼의 기능 제거
         //super.onBackPressed();
 
-        if (System.currentTimeMillis() > m_backKeyPressedTime + 1000) {
+        if (System.currentTimeMillis() > m_backKeyPressedTime + 2000) {
             m_backKeyPressedTime = System.currentTimeMillis();
             Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 메뉴로 이동 됩니다.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         //1초 이내에 뒤로가기 버튼을 한번 더 클릭시 finish()
-        if (System.currentTimeMillis() <= m_backKeyPressedTime + 1000) {
+        if (System.currentTimeMillis() <= m_backKeyPressedTime + 2000) {
             finish();
         }
     }

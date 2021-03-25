@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,43 +26,36 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class QuadrupletsActivity extends AppCompatActivity implements SettingFragment.Max_Movement_SetListener{
+public class TwinsActivity extends AppCompatActivity implements SettingFragment.Max_Movement_SetListener {
 
     private AdView mAdView;
 
     static final String KEY_TIME = "KEY_TIME";
     static final String KEY_NUM1 = "KEY_NUM1";
     static final String KEY_NUM2 = "KEY_NUM2";
-    static final String KEY_NUM3 = "KEY_NUM3";
-    static final String KEY_NUM4 = "KEY_NUM4";
 
     static final String KEY_FINISH_TIME1 = "KEY_FINISH_TIME1";
     static final String KEY_FINISH_TIME2 = "KEY_FINISH_TIME2";
-    static final String KEY_FINISH_TIME3 = "KEY_FINISH_TIME3";
-    static final String KEY_FINISH_TIME4 = "KEY_FINISH_TIME4";
-
     static final String KEY_TIME_DIFF1 = "KEY_TIME_DIFF1";
     static final String KEY_TIME_DIFF2 = "KEY_TIME_DIFF2";
-    static final String KEY_TIME_DIFF3 = "KEY_TIME_DIFF3";
-    static final String KEY_TIME_DIFF4 = "KEY_TIME_DIFF4";
 
     static final String KEY_MAX_MOVEMENT = "KEY_MAX_MOVEMENT";
 
     long m_start = 0;
-    long m_end1 = 0, m_end2 = 0, m_end3 = 0, m_end4 = 0;
+    long m_end1 = 0, m_end2 = 0;
     int max_movement = 10;
 
     private long m_backKeyPressedTime = 0;
 
-    TextView num1, num2, num3, num4, start_time, finish_tim1, finish_tim2, finish_tim3, finish_tim4, time_diff1, time_diff2, time_diff3, time_diff4;
-    Button num1_add, num2_add, num3_add, num4_add, num1_sub, num2_sub, num3_sub, num4_sub, start_button;
+    TextView num1, num2, start_time, finish_tim1, finish_tim2, time_diff1, time_diff2;
+    Button num1_add, num2_add, num1_sub, num2_sub, start_button;
 
-    int m_num1_count, m_num2_count, m_num3_count, m_num4_count;
+    int m_num1_count, m_num2_count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.quadruplets_main);
+        setContentView(R.layout.twins_main);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -82,30 +74,20 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
 
         num1 = findViewById(R.id.number1_count);
         num2 = findViewById(R.id.number2_count);
-        num3 = findViewById(R.id.number3_count);
-        num4 = findViewById(R.id.number4_count);
 
         finish_tim1 = findViewById(R.id.finish_time1);
         finish_tim2 = findViewById(R.id.finish_time2);
-        finish_tim3 = findViewById(R.id.finish_time3);
-        finish_tim4 = findViewById(R.id.finish_time4);
 
         time_diff1 = findViewById(R.id.time_diff1);
         time_diff2 = findViewById(R.id.time_diff2);
-        time_diff3 = findViewById(R.id.time_diff3);
-        time_diff4 = findViewById(R.id.time_diff4);
 
         start_time = findViewById(R.id.start_Time);
 
         num1_add = (Button) findViewById(R.id.number1_add);
         num2_add = (Button) findViewById(R.id.number2_add);
-        num3_add = (Button) findViewById(R.id.number3_add);
-        num4_add = (Button) findViewById(R.id.number4_add);
 
         num1_sub = (Button) findViewById(R.id.number1_sub);
         num2_sub = (Button) findViewById(R.id.number2_sub);
-        num3_sub = (Button) findViewById(R.id.number3_sub);
-        num4_sub = (Button) findViewById(R.id.number4_sub);
 
         start_button = (Button) findViewById(R.id.start_Button);
 
@@ -113,35 +95,21 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
             String time = savedInstanceState.getString(KEY_TIME);
             String data1 = savedInstanceState.getString(KEY_NUM1);
             String data2 = savedInstanceState.getString(KEY_NUM2);
-            String data3 = savedInstanceState.getString(KEY_NUM3);
-            String data4 = savedInstanceState.getString(KEY_NUM4);
             m_start = Long.parseLong(time);
-            start_time.setText(timeformat(m_start, "HH:mm:ss"));
+            start_time.setText(timeformet(m_start, "HH:mm:ss"));
             m_num1_count = Integer.parseInt(data1);
             m_num2_count = Integer.parseInt(data2);
-            m_num3_count = Integer.parseInt(data3);
-            m_num4_count = Integer.parseInt(data4);
             num1.setText(data1);
             num2.setText(data2);
-            num3.setText(data3);
-            num4.setText(data4);
 
             String finish_time1 = savedInstanceState.getString(KEY_FINISH_TIME1);
             String finish_time2 = savedInstanceState.getString(KEY_FINISH_TIME2);
-            String finish_time3 = savedInstanceState.getString(KEY_FINISH_TIME3);
-            String finish_time4 = savedInstanceState.getString(KEY_FINISH_TIME4);
             String time_diff_1 = savedInstanceState.getString(KEY_TIME_DIFF1);
             String time_diff_2 = savedInstanceState.getString(KEY_TIME_DIFF2);
-            String time_diff_3 = savedInstanceState.getString(KEY_TIME_DIFF3);
-            String time_diff_4 = savedInstanceState.getString(KEY_TIME_DIFF4);
             finish_tim1.setText(finish_time1);
             finish_tim2.setText(finish_time2);
-            finish_tim3.setText(finish_time3);
-            finish_tim4.setText(finish_time4);
             time_diff1.setText(time_diff_1);
             time_diff2.setText(time_diff_2);
-            time_diff3.setText(time_diff_3);
-            time_diff4.setText(time_diff_4);
 
             max_movement = savedInstanceState.getInt(KEY_MAX_MOVEMENT);
 
@@ -166,7 +134,7 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                         num1.setText(Integer.toString(m_num1_count));
                         if (m_num1_count == max_movement) {
                             m_end1 = System.currentTimeMillis();
-                            finish_tim1.setText(timeformat(m_end1, "HH:mm:ss"));
+                            finish_tim1.setText(timeformet(m_end1, "HH:mm:ss"));
                             time_diff1.setText(time_diff(m_start, m_end1));
                         }
                         break;
@@ -182,40 +150,8 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                         num2.setText(Integer.toString(m_num2_count));
                         if (m_num2_count == max_movement) {
                             m_end2 = System.currentTimeMillis();
-                            finish_tim2.setText(timeformat(m_end2, "HH:mm:ss"));
+                            finish_tim2.setText(timeformet(m_end2, "HH:mm:ss"));
                             time_diff2.setText(time_diff(m_start, m_end2));
-                        }
-                        break;
-
-                    case R.id.number3_add:
-                        if(m_start == 0){
-                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
-                            break;
-                        }
-                        if (m_num3_count < max_movement) {
-                            m_num3_count += 1;
-                        }
-                        num3.setText(Integer.toString(m_num3_count));
-                        if (m_num3_count == max_movement) {
-                            m_end3 = System.currentTimeMillis();
-                            finish_tim3.setText(timeformat(m_end3, "HH:mm:ss"));
-                            time_diff3.setText(time_diff(m_start, m_end3));
-                        }
-                        break;
-
-                    case R.id.number4_add:
-                        if(m_start == 0){
-                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
-                            break;
-                        }
-                        if (m_num4_count < max_movement) {
-                            m_num4_count += 1;
-                        }
-                        num4.setText(Integer.toString(m_num4_count));
-                        if (m_num4_count == 10) {
-                            m_end4 = System.currentTimeMillis();
-                            finish_tim4.setText(timeformat(m_end4, "HH:mm:ss"));
-                            time_diff4.setText(time_diff(m_start, m_end4));
                         }
                         break;
 
@@ -248,48 +184,14 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                         }
                         num2.setText(Integer.toString(m_num2_count));
                         break;
-
-                    case R.id.number3_sub:
-                        if(m_start == 0){
-                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
-                            break;
-                        }
-                        if (m_num3_count > 0) {
-                            m_num3_count -= 1;
-                        }
-                        if (m_num3_count < max_movement){
-                            finish_tim3.setText("");
-                            time_diff3.setText("");
-                        }
-                        num3.setText(Integer.toString(m_num3_count));
-                        break;
-
-                    case R.id.number4_sub:
-                        if(m_start == 0){
-                            Toast.makeText(getApplicationContext(), "시작버튼을 먼저 눌러주세요.", Toast.LENGTH_SHORT).show();
-                            break;
-                        }
-                        if (m_num4_count > 0) {
-                            m_num4_count -= 1;
-                        }
-                        if (m_num4_count < max_movement){
-                            finish_tim4.setText("");
-                            time_diff4.setText("");
-                        }
-                        num4.setText(Integer.toString(m_num4_count));
-                        break;
                 }
             }
         };
 
         num1_add.setOnClickListener(Listener);
         num2_add.setOnClickListener(Listener);
-        num3_add.setOnClickListener(Listener);
-        num4_add.setOnClickListener(Listener);
         num1_sub.setOnClickListener(Listener);
         num2_sub.setOnClickListener(Listener);
-        num3_sub.setOnClickListener(Listener);
-        num4_sub.setOnClickListener(Listener);
         start_button.setOnClickListener(Listener);
     }
 
@@ -299,23 +201,15 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
         m_start = 0;
         m_num1_count = 0;
         m_num2_count = 0;
-        m_num3_count = 0;
-        m_num4_count = 0;
 
         start_time.setText("");
         num1.setText(Integer.toString(m_num1_count));
         num2.setText(Integer.toString(m_num2_count));
-        num3.setText(Integer.toString(m_num3_count));
-        num4.setText(Integer.toString(m_num4_count));
 
         finish_tim1.setText("");
         finish_tim2.setText("");
-        finish_tim3.setText("");
-        finish_tim4.setText("");
         time_diff1.setText("");
         time_diff2.setText("");
-        time_diff3.setText("");
-        time_diff4.setText("");
     }
 
     @Override
@@ -349,33 +243,20 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
         super.onSaveInstanceState(outState);
 
         String time = Long.toString(m_start);
-        String num_data1 = num1.getText().toString();
-        String num_data2 = num2.getText().toString();
-        String num_data3 = num3.getText().toString();
-        String num_data4 = num4.getText().toString();
+        String data1 = num1.getText().toString();
+        String data2 = num2.getText().toString();
         outState.putString(KEY_TIME, time);
-        outState.putString(KEY_NUM1, num_data1);
-        outState.putString(KEY_NUM2, num_data2);
-        outState.putString(KEY_NUM3, num_data3);
-        outState.putString(KEY_NUM4, num_data4);
+        outState.putString(KEY_NUM1, data1);
+        outState.putString(KEY_NUM2, data2);
 
         String finish_tim1_data1 = finish_tim1.getText().toString();
         String finish_tim1_data2 = finish_tim2.getText().toString();
-        String finish_tim1_data3 = finish_tim3.getText().toString();
-        String finish_tim1_data4 = finish_tim4.getText().toString();
-
         String time_diff1_data1 = time_diff1.getText().toString();
         String time_diff1_data2 = time_diff2.getText().toString();
-        String time_diff1_data3 = time_diff3.getText().toString();
-        String time_diff1_data4 = time_diff4.getText().toString();
         outState.putString(KEY_FINISH_TIME1, finish_tim1_data1);
         outState.putString(KEY_FINISH_TIME2, finish_tim1_data2);
-        outState.putString(KEY_FINISH_TIME3, finish_tim1_data3);
-        outState.putString(KEY_FINISH_TIME4, finish_tim1_data4);
         outState.putString(KEY_TIME_DIFF1, time_diff1_data1);
         outState.putString(KEY_TIME_DIFF2, time_diff1_data2);
-        outState.putString(KEY_TIME_DIFF3, time_diff1_data3);
-        outState.putString(KEY_TIME_DIFF4, time_diff1_data4);
 
         outState.putInt(KEY_MAX_MOVEMENT, max_movement);
     }
@@ -408,25 +289,17 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                 m_start = 0;
                 m_num1_count = 0;
                 m_num2_count = 0;
-                m_num3_count = 0;
-                m_num4_count = 0;
                 num1.setText(Integer.toString(m_num1_count));
                 num2.setText(Integer.toString(m_num2_count));
-                num3.setText(Integer.toString(m_num3_count));
-                num4.setText(Integer.toString(m_num4_count));
 
                 finish_tim1.setText("");
                 finish_tim2.setText("");
-                finish_tim3.setText("");
-                finish_tim4.setText("");
                 time_diff1.setText("");
                 time_diff2.setText("");
-                time_diff3.setText("");
-                time_diff4.setText("");
 
                 m_start = System.currentTimeMillis();
-                start_time.setText(timeformat(m_start, "HH:mm:ss"));
-                Toast.makeText(QuadrupletsActivity.this, "리셋하였습니다.", Toast.LENGTH_SHORT).show();
+                start_time.setText(timeformet(m_start, "HH:mm:ss"));
+                Toast.makeText(TwinsActivity.this, "리셋하였습니다.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -440,7 +313,7 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
         builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(QuadrupletsActivity.this, "리셋을 취소하였습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TwinsActivity.this, "리셋을 취소하였습니다.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -459,7 +332,7 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
         return returnTime;
     }
 
-    String timeformat(long time, String format){
+    String timeformet(long time, String format){
         Date date = new Date(time);
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.format(date);
