@@ -1,7 +1,9 @@
 package com.checker.tripletschecker;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -144,8 +146,8 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
             time_diff4.setText(time_diff_4);
 
             max_movement = savedInstanceState.getInt(KEY_MAX_MOVEMENT);
-
         }
+        restoreData();
 
         View.OnClickListener Listener = new Button.OnClickListener() {
             @Override
@@ -293,6 +295,54 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
         start_button.setOnClickListener(Listener);
     }
 
+    private void restoreData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("QuadrupletsActivity", Context.MODE_PRIVATE);
+        if (sharedPreferences != null) {
+            String time = sharedPreferences.getString(KEY_TIME, "");
+            String data1 = sharedPreferences.getString(KEY_NUM1, "");
+            String data2 = sharedPreferences.getString(KEY_NUM2, "");
+            String data3 = sharedPreferences.getString(KEY_NUM3, "");
+            String data4 = sharedPreferences.getString(KEY_NUM4, "");
+            if (time==""||data1==""||data2==""||data3==""||data4=="") {
+                m_start = 0;
+                m_num1_count = 0;
+                m_num2_count = 0;
+                m_num3_count = 0;
+                m_num4_count = 0;
+            } else {
+                m_start = Long.parseLong(time);
+                start_time.setText(timeformat(m_start, "HH:mm:ss"));
+                m_num1_count = Integer.parseInt(data1);
+                m_num2_count = Integer.parseInt(data2);
+                m_num3_count = Integer.parseInt(data3);
+                m_num4_count = Integer.parseInt(data4);
+                num1.setText(data1);
+                num2.setText(data2);
+                num3.setText(data3);
+                num4.setText(data4);
+            }
+            String finish_time1 = sharedPreferences.getString(KEY_FINISH_TIME1, "");
+            String finish_time2 = sharedPreferences.getString(KEY_FINISH_TIME2, "");
+            String finish_time3 = sharedPreferences.getString(KEY_FINISH_TIME3, "");
+            String finish_time4 = sharedPreferences.getString(KEY_FINISH_TIME4, "");
+            String time_diff_1 = sharedPreferences.getString(KEY_TIME_DIFF1, "");
+            String time_diff_2 = sharedPreferences.getString(KEY_TIME_DIFF2, "");
+            String time_diff_3 = sharedPreferences.getString(KEY_TIME_DIFF3, "");
+            String time_diff_4 = sharedPreferences.getString(KEY_TIME_DIFF4, "");
+
+            finish_tim1.setText(finish_time1);
+            finish_tim2.setText(finish_time2);
+            finish_tim3.setText(finish_time3);
+            finish_tim4.setText(finish_time4);
+            time_diff1.setText(time_diff_1);
+            time_diff2.setText(time_diff_2);
+            time_diff3.setText(time_diff_3);
+            time_diff4.setText(time_diff_4);
+
+            max_movement = sharedPreferences.getInt(KEY_MAX_MOVEMENT, 10);
+        }
+    }
+
     @Override
     public void onMax_Movement_Set(int max_movement) {
         this.max_movement = max_movement;
@@ -342,6 +392,45 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences sharedPreferences = getSharedPreferences("QuadrupletsActivity", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        String time = Long.toString(m_start);
+        String data1 = num1.getText().toString();
+        String data2 = num2.getText().toString();
+        String data3 = num3.getText().toString();
+        String data4 = num4.getText().toString();
+        editor.putString("KEY_TIME", time);
+        editor.putString("KEY_NUM1", data1);
+        editor.putString("KEY_NUM2", data2);
+        editor.putString("KEY_NUM3", data3);
+        editor.putString("KEY_NUM4", data4);
+
+        String finish_tim1_data1 = finish_tim1.getText().toString();
+        String finish_tim1_data2 = finish_tim2.getText().toString();
+        String finish_tim1_data3 = finish_tim3.getText().toString();
+        String finish_tim1_data4 = finish_tim4.getText().toString();
+        String time_diff1_data1 = time_diff1.getText().toString();
+        String time_diff1_data2 = time_diff2.getText().toString();
+        String time_diff1_data3 = time_diff3.getText().toString();
+        String time_diff1_data4 = time_diff4.getText().toString();
+        editor.putString("KEY_FINISH_TIME1", finish_tim1_data1);
+        editor.putString("KEY_FINISH_TIME2", finish_tim1_data2);
+        editor.putString("KEY_FINISH_TIME3", finish_tim1_data3);
+        editor.putString("KEY_FINISH_TIME4", finish_tim1_data4);
+        editor.putString("KEY_TIME_DIFF1", time_diff1_data1);
+        editor.putString("KEY_TIME_DIFF2", time_diff1_data2);
+        editor.putString("KEY_TIME_DIFF3", time_diff1_data3);
+        editor.putString("KEY_TIME_DIFF4", time_diff1_data4);
+
+        editor.putInt("KEY_MAX_MOVEMENT", max_movement);
+
+        editor.apply();
     }
 
     @Override

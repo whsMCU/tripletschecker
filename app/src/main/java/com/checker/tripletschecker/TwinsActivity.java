@@ -1,9 +1,12 @@
 package com.checker.tripletschecker;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -112,8 +115,8 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
             time_diff2.setText(time_diff_2);
 
             max_movement = savedInstanceState.getInt(KEY_MAX_MOVEMENT);
-
         }
+        restoreData();
 
         View.OnClickListener Listener = new Button.OnClickListener() {
             @Override
@@ -124,7 +127,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
                         break;
 
                     case R.id.number1_add:
-                        if(m_start == 0){
+                        if (m_start == 0) {
                             Toast.makeText(getApplicationContext(), R.string.start_button_press, Toast.LENGTH_SHORT).show();
                             break;
                         }
@@ -140,7 +143,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
                         break;
 
                     case R.id.number2_add:
-                        if(m_start == 0){
+                        if (m_start == 0) {
                             Toast.makeText(getApplicationContext(), R.string.start_button_press, Toast.LENGTH_SHORT).show();
                             break;
                         }
@@ -156,14 +159,14 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
                         break;
 
                     case R.id.number1_sub:
-                        if(m_start == 0){
+                        if (m_start == 0) {
                             Toast.makeText(getApplicationContext(), R.string.start_button_press, Toast.LENGTH_SHORT).show();
                             break;
                         }
                         if (m_num1_count > 0) {
                             m_num1_count -= 1;
                         }
-                        if (m_num1_count < max_movement){
+                        if (m_num1_count < max_movement) {
                             finish_tim1.setText("");
                             time_diff1.setText("");
                         }
@@ -171,14 +174,14 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
                         break;
 
                     case R.id.number2_sub:
-                        if(m_start == 0){
+                        if (m_start == 0) {
                             Toast.makeText(getApplicationContext(), R.string.start_button_press, Toast.LENGTH_SHORT).show();
                             break;
                         }
                         if (m_num2_count > 0) {
                             m_num2_count -= 1;
                         }
-                        if (m_num2_count < max_movement){
+                        if (m_num2_count < max_movement) {
                             finish_tim2.setText("");
                             time_diff2.setText("");
                         }
@@ -193,6 +196,38 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
         num1_sub.setOnClickListener(Listener);
         num2_sub.setOnClickListener(Listener);
         start_button.setOnClickListener(Listener);
+    }
+
+    private void restoreData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("TwinActivity", Context.MODE_PRIVATE);
+        if (sharedPreferences != null) {
+            String time = sharedPreferences.getString(KEY_TIME, "");
+            String data1 = sharedPreferences.getString(KEY_NUM1, "");
+            String data2 = sharedPreferences.getString(KEY_NUM2, "");
+            if (time==""||data1==""||data2=="") {
+                m_start = 0;
+                m_num1_count = 0;
+                m_num2_count = 0;
+            } else {
+                m_start = Long.parseLong(time);
+                start_time.setText(timeformet(m_start, "HH:mm:ss"));
+                m_num1_count = Integer.parseInt(data1);
+                m_num2_count = Integer.parseInt(data2);
+                num1.setText(data1);
+                num2.setText(data2);
+            }
+            String finish_time1 = sharedPreferences.getString(KEY_FINISH_TIME1, "");
+            String finish_time2 = sharedPreferences.getString(KEY_FINISH_TIME2, "");
+            String time_diff_1 = sharedPreferences.getString(KEY_TIME_DIFF1, "");
+            String time_diff_2 = sharedPreferences.getString(KEY_TIME_DIFF2, "");
+
+            finish_tim1.setText(finish_time1);
+            finish_tim2.setText(finish_time2);
+            time_diff1.setText(time_diff_1);
+            time_diff2.setText(time_diff_2);
+
+            max_movement = sharedPreferences.getInt(KEY_MAX_MOVEMENT, 10);
+        }
     }
 
     @Override
@@ -220,7 +255,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.description:
                 Intent intent = new Intent(this, DescriptionActivity.class);
                 startActivity(intent);
@@ -236,6 +271,33 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences sharedPreferences = getSharedPreferences("TwinActivity", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        String time = Long.toString(m_start);
+        String data1 = num1.getText().toString();
+        String data2 = num2.getText().toString();
+        editor.putString("KEY_TIME", time);
+        editor.putString("KEY_NUM1", data1);
+        editor.putString("KEY_NUM2", data2);
+
+        String finish_tim1_data1 = finish_tim1.getText().toString();
+        String finish_tim1_data2 = finish_tim2.getText().toString();
+        String time_diff1_data1 = time_diff1.getText().toString();
+        String time_diff1_data2 = time_diff2.getText().toString();
+        editor.putString("KEY_FINISH_TIME1", finish_tim1_data1);
+        editor.putString("KEY_FINISH_TIME2", finish_tim1_data2);
+        editor.putString("KEY_TIME_DIFF1", time_diff1_data1);
+        editor.putString("KEY_TIME_DIFF2", time_diff1_data2);
+
+        editor.putInt("KEY_MAX_MOVEMENT", max_movement);
+
+        editor.apply();
     }
 
     @Override
@@ -322,7 +384,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
     }
 
     String time_diff(long start_time, long m_end_time) {
-        long diff = (m_end_time - start_time)/1000;
+        long diff = (m_end_time - start_time) / 1000;
 
         long hour = diff / 60 / 60;
         long min = (diff / 60) % 60;
@@ -332,7 +394,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
         return returnTime;
     }
 
-    String timeformet(long time, String format){
+    String timeformet(long time, String format) {
         Date date = new Date(time);
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.format(date);
