@@ -49,6 +49,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
     long m_start = 0;
     long m_end1 = 0, m_end2 = 0, m_end3 = 0;
     int max_movement = 10;
+    boolean add1_max_flag, add2_max_flag, add3_max_flag;
 
     private long m_backKeyPressedTime = 0;
 
@@ -146,10 +147,12 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                             break;
                         }
                         if (m_num1_count < max_movement) {
+                            add1_max_flag = false;
                             m_num1_count += 1;
                         }
                         num1.setText(Integer.toString(m_num1_count));
-                        if (m_num1_count == max_movement) {
+                        if (m_num1_count == max_movement && add1_max_flag == false) {
+                            add1_max_flag = true;
                             m_end1 = System.currentTimeMillis();
                             finish_tim1.setText(timeformet(m_end1, "HH:mm:ss"));
                             time_diff1.setText(time_diff(m_start, m_end1));
@@ -162,10 +165,12 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                             break;
                         }
                         if (m_num2_count < max_movement) {
+                            add2_max_flag = false;
                             m_num2_count += 1;
                         }
                         num2.setText(Integer.toString(m_num2_count));
-                        if (m_num2_count == max_movement) {
+                        if (m_num2_count == max_movement && add2_max_flag == false) {
+                            add2_max_flag = true;
                             m_end2 = System.currentTimeMillis();
                             finish_tim2.setText(timeformet(m_end2, "HH:mm:ss"));
                             time_diff2.setText(time_diff(m_start, m_end2));
@@ -178,10 +183,12 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                             break;
                         }
                         if (m_num3_count < max_movement) {
+                            add3_max_flag = false;
                             m_num3_count += 1;
                         }
                         num3.setText(Integer.toString(m_num3_count));
-                        if (m_num3_count == max_movement) {
+                        if (m_num3_count == max_movement && add3_max_flag == false) {
+                            add3_max_flag = true;
                             m_end3 = System.currentTimeMillis();
                             finish_tim3.setText(timeformet(m_end3, "HH:mm:ss"));
                             time_diff3.setText(time_diff(m_start, m_end3));
