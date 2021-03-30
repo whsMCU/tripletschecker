@@ -155,7 +155,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
                             m_num2_count += 1;
                         }
                         num2.setText(Integer.toString(m_num2_count));
-                        if (m_num2_count == max_movement && add1_max_flag == false) {
+                        if (m_num2_count == max_movement && add2_max_flag == false) {
                             add2_max_flag = true;
                             m_end2 = System.currentTimeMillis();
                             finish_tim2.setText(timeformet(m_end2, "HH:mm:ss"));
