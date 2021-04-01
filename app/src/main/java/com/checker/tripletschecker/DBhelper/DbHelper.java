@@ -2,6 +2,7 @@ package com.checker.tripletschecker.DBhelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -40,9 +41,12 @@ public class DbHelper extends SQLiteOpenHelper {
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_DATE + " TEXT, " +
                 KEY_COUNT1 + "TEXT, " +
+                KEY_COUNT2 + "TEXT, " +
                 KEY_START_TIME + "TEXT, " +
                 KEY_END_TIME1 + "TEXT, " +
-                KEY_DURATION1 + "TEXT);";
+                KEY_END_TIME2 + "TEXT, " +
+                KEY_DURATION1 + "TEXT, " +
+                KEY_DURATION2 + "TEXT);";
 //        String Query_Table = " CREATE TABLE " + TABLE_NAME + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 //                + KEY_DATE + " TEXT, " + KEY_COUNT1 + "TEXT, " + KEY_COUNT2 + "TEXT, " + KEY_COUNT3 + "TEXT, " + KEY_COUNT4 + "TEXT, "
 //                + KEY_START_TIME + "TEXT, " + KEY_END_TIME1 + "TEXT, " + KEY_END_TIME2 + "TEXT, " + KEY_END_TIME3 + "TEXT, " + KEY_END_TIME4 + "TEXT, "
@@ -57,14 +61,33 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertData(String date, String count1, String start_time, String end_time, String duration1) {
+    public long insertData(String date, String count1, String count2, String start_time, String end_time1, String end_time2, String duration1, String duration2) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_DATE, date);
         values.put(KEY_COUNT1, count1);
+        values.put(KEY_COUNT2, count2);
         values.put(KEY_START_TIME, start_time);
-        values.put(KEY_END_TIME1, end_time);
+        values.put(KEY_END_TIME1, end_time1);
+        values.put(KEY_END_TIME2, end_time2);
         values.put(KEY_DURATION1, duration1);
+        values.put(KEY_DURATION2, duration2);
         return db.insert(TABLE_NAME, null, values);
+    }
+
+    public String[] getData(long l) {
+        String[] data = new String[5];
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = new String[]{KEY_DATE, KEY_COUNT1, KEY_START_TIME, KEY_END_TIME1, KEY_DURATION1};
+        Cursor cursor = db.query(TABLE_NAME, columns, KEY_ID+"="+l,null,null,null,null);
+        if(columns !=null) {
+            cursor.moveToFirst();
+            data[0] = cursor.getString(1);
+            data[1] = cursor.getString(2);
+            data[2] = cursor.getString(3);
+            data[3] = cursor.getString(4);
+            data[4] = cursor.getString(5);
+        }
+        return data;
     }
 }

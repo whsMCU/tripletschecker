@@ -18,6 +18,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.checker.tripletschecker.DBhelper.DbHelper;
+import com.checker.tripletschecker.Dialog.DialogFragment;
+import com.checker.tripletschecker.Dialog.SettingFragment;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -29,9 +32,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class TwinsActivity extends AppCompatActivity implements SettingFragment.Max_Movement_SetListener {
+public class TwinsActivity extends AppCompatActivity implements SettingFragment.Max_Movement_SetListener, DialogFragment.Save_Listener {
 
     private AdView mAdView;
+
+    DbHelper db;
 
     static final String KEY_TIME = "KEY_TIME";
     static final String KEY_NUM1 = "KEY_NUM1";
@@ -95,6 +100,8 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
         start_button = (Button) findViewById(R.id.start_Button);
 
+        db = new DbHelper(this, "Twins");
+
         if (savedInstanceState != null) {
             String time = savedInstanceState.getString(KEY_TIME);
             String data1 = savedInstanceState.getString(KEY_NUM1);
@@ -143,6 +150,9 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
                             finish_tim1.setText(timeformet(m_end1, "HH:mm:ss"));
                             time_diff1.setText(time_diff(m_start, m_end1));
                         }
+                        if(m_num1_count == max_movement && m_num2_count == max_movement){
+                            showMessage_Save();
+                        }
                         break;
 
                     case R.id.number2_add:
@@ -160,6 +170,9 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
                             m_end2 = System.currentTimeMillis();
                             finish_tim2.setText(timeformet(m_end2, "HH:mm:ss"));
                             time_diff2.setText(time_diff(m_start, m_end2));
+                        }
+                        if(m_num1_count == max_movement && m_num2_count == max_movement){
+                            showMessage_Save();
                         }
                         break;
 
@@ -191,6 +204,8 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
                             time_diff2.setText("");
                         }
                         num2.setText(Integer.toString(m_num2_count));
+                        break;
+                    default:
                         break;
                 }
             }
@@ -250,6 +265,23 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
         finish_tim2.setText("");
         time_diff1.setText("");
         time_diff2.setText("");
+    }
+
+    @Override
+    public void onSave_Set(boolean m_save) {
+        if(m_save == true) {
+            String date, count1, count2, start_time, end_time1, end_time2, duration1, duration2;
+            date = timeformet(m_start, "HH:mm:ss");
+            count1 = Integer.toString(m_num1_count);
+            count2 = Integer.toString(m_num2_count);
+            start_time = Long.toString(m_start);
+            end_time1 = Long.toBinaryString(m_end1);
+            end_time2 = Long.toBinaryString(m_end2);
+            duration1 = time_diff1.getText().toString();
+            duration2 = time_diff2.getText().toString();
+            db.insertData(date, count1, count2, start_time, end_time1, end_time2, duration1, duration2);
+            Toast.makeText(TwinsActivity.this, "저장완료", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -386,6 +418,10 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void showMessage_Save() {
+        new DialogFragment().show(getSupportFragmentManager(),"DialogFragment");
     }
 
     String time_diff(long start_time, long m_end_time) {

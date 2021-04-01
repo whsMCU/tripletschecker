@@ -30,48 +30,70 @@
         android:layout_weight="7"
         app:srcCompat="@drawable/baby" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/bt_Twins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:autoSizeTextType="uniform"
             android:background="@drawable/round_button"
             android:backgroundTint="@color/teal_200"
             android:gravity="center_horizontal"
-            android:layout_gravity="center_horizontal"
-            android:autoSizeTextType="uniform"
             android:text="@string/twins"
             android:textSize="50dp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/bt_Triple"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:autoSizeTextType="uniform"
             android:background="@drawable/round_button"
             android:backgroundTint="@color/teal_200"
             android:gravity="center_horizontal"
-            android:autoSizeTextType="uniform"
             android:text="@string/triplets"
             android:textSize="50dp" />
+
         <Button
             android:id="@+id/bt_Quad"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:autoSizeTextType="uniform"
             android:background="@drawable/round_button"
             android:backgroundTint="@color/teal_200"
             android:gravity="center_horizontal"
-            android:autoSizeTextType="uniform"
             android:text="@string/quadruplets"
             android:textSize="50dp" />
     </LinearLayout>
-
 
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
