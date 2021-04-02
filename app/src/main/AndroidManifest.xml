@@ -19,15 +19,15 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".DescriptionActivity"></activity>
-        <activity android:name=".TwinsActivity"></activity>
-        <activity android:name=".TripletsActivity"></activity>
-        <activity android:name=".QuadrupletsActivity"></activity>
-
+        <activity android:name=".DescriptionActivity" />
+        <activity android:name=".TwinsActivity" />
+        <activity android:name=".TripletsActivity" />
+        <activity android:name=".QuadrupletsActivity" />
+        <activity android:name=".TrendActivity"></activity>
     </application>
 
 </manifest>
