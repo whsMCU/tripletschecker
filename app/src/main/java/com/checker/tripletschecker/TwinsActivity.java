@@ -100,7 +100,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
         start_button = (Button) findViewById(R.id.start_Button);
 
-        db = new DbHelper(this, "Twins");
+        db = new DbHelper(this, "twins");
 
         if (savedInstanceState != null) {
             String time = savedInstanceState.getString(KEY_TIME);
@@ -271,12 +271,12 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
     public void onSave_Set(boolean m_save) {
         if(m_save == true) {
             String date, count1, count2, start_time, end_time1, end_time2, duration1, duration2;
-            date = timeformet(m_start, "HH:mm:ss");
+            date = timeformet(m_start, "yyyy년 MM월 dd일");
             count1 = Integer.toString(m_num1_count);
             count2 = Integer.toString(m_num2_count);
-            start_time = Long.toString(m_start);
-            end_time1 = Long.toBinaryString(m_end1);
-            end_time2 = Long.toBinaryString(m_end2);
+            start_time = timeformet(m_start, "HH:mm:ss");
+            end_time1 = timeformet(m_end1, "HH:mm:ss");
+            end_time2 = timeformet(m_end2, "HH:mm:ss");
             duration1 = time_diff1.getText().toString();
             duration2 = time_diff2.getText().toString();
             db.insertData(date, count1, count2, start_time, end_time1, end_time2, duration1, duration2);

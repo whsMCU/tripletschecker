@@ -12,6 +12,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 
+    private static final String DATABASE_NAME = "database.db";
     private static final String TABLE_NAME = "_count_data";
 
     private static final String KEY_ID = "id";
@@ -30,9 +31,12 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String KEY_DURATION3 = "duration3";
     private static final String KEY_DURATION4 = "duration4";
 
+    String activity;
 
-    public DbHelper(@Nullable Context context, @Nullable String name) {
-        super(context, name, null, DATABASE_VERSION);
+
+    public DbHelper(@Nullable Context context, String activity) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.activity = activity;
     }
 
     @Override
@@ -40,17 +44,13 @@ public class DbHelper extends SQLiteOpenHelper {
         String Query_Table = " CREATE TABLE " + TABLE_NAME + "(" +
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_DATE + " TEXT, " +
-                KEY_COUNT1 + "TEXT, " +
-                KEY_COUNT2 + "TEXT, " +
-                KEY_START_TIME + "TEXT, " +
-                KEY_END_TIME1 + "TEXT, " +
-                KEY_END_TIME2 + "TEXT, " +
-                KEY_DURATION1 + "TEXT, " +
-                KEY_DURATION2 + "TEXT);";
-//        String Query_Table = " CREATE TABLE " + TABLE_NAME + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-//                + KEY_DATE + " TEXT, " + KEY_COUNT1 + "TEXT, " + KEY_COUNT2 + "TEXT, " + KEY_COUNT3 + "TEXT, " + KEY_COUNT4 + "TEXT, "
-//                + KEY_START_TIME + "TEXT, " + KEY_END_TIME1 + "TEXT, " + KEY_END_TIME2 + "TEXT, " + KEY_END_TIME3 + "TEXT, " + KEY_END_TIME4 + "TEXT, "
-//                + KEY_DURATION1 + "TEXT, " + KEY_DURATION2 + "TEXT, " + KEY_DURATION3 + "TEXT, " + KEY_DURATION4 + "TEXT);";
+                KEY_COUNT1 + " TEXT, " +
+                KEY_COUNT2 + " TEXT, " +
+                KEY_START_TIME + " TEXT, " +
+                KEY_END_TIME1 + " TEXT, " +
+                KEY_END_TIME2 + " TEXT, " +
+                KEY_DURATION1 + " TEXT, " +
+                KEY_DURATION2 + " TEXT)";
 
         db.execSQL(Query_Table);
     }
