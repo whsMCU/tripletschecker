@@ -78,7 +78,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public String[] getData(long l) {
         String[] data = new String[5];
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = new String[]{KEY_DATE, KEY_COUNT1, KEY_START_TIME, KEY_END_TIME1, KEY_DURATION1};
+        String[] columns = new String[]{KEY_DATE, KEY_COUNT1, KEY_COUNT2, KEY_START_TIME, KEY_END_TIME1, KEY_END_TIME2, KEY_DURATION1, KEY_DURATION2};
         Cursor cursor = db.query(TABLE_NAME, columns, KEY_ID+"="+l,null,null,null,null);
         if(columns !=null) {
             cursor.moveToFirst();
@@ -87,6 +87,9 @@ public class DbHelper extends SQLiteOpenHelper {
             data[2] = cursor.getString(3);
             data[3] = cursor.getString(4);
             data[4] = cursor.getString(5);
+            data[5] = cursor.getString(6);
+            data[6] = cursor.getString(7);
+            data[7] = cursor.getString(8);
         }
         return data;
     }

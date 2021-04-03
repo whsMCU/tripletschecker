@@ -1,5 +1,6 @@
 package com.checker.tripletschecker;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
