@@ -1,41 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".TrendActivity">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:autoSizeTextType="uniform"
-        android:background="@drawable/edge"
-        android:foregroundGravity="center"
-        android:gravity="center_horizontal"
-        android:text="과거이력"
-        android:textColor="@color/black"
-        android:textSize="50dp" />
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/v_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -43,6 +28,7 @@
                 android:hint="날짜" />
 
             <TextView
+                android:id="@+id/v_first_count"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -50,6 +36,7 @@
                 android:hint="1카운트" />
 
             <TextView
+                android:id="@+id/v_second_count"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -57,6 +44,7 @@
                 android:hint="2카운트" />
 
             <TextView
+                android:id="@+id/v_third_count"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -64,6 +52,7 @@
                 android:hint="3카운트" />
 
             <TextView
+                android:id="@+id/v_fourth_count"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -75,11 +64,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/v_start_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -87,6 +75,7 @@
                 android:text="시작시간" />
 
             <TextView
+                android:id="@+id/v_first_duration"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -94,6 +83,7 @@
                 android:hint="1완료시간" />
 
             <TextView
+                android:id="@+id/v_second_duration"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -101,26 +91,22 @@
                 android:hint="2완료시간" />
 
             <TextView
+                android:id="@+id/v_third_duration"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:text="3완료시간" />
+                android:hint="3완료시간" />
 
             <TextView
+                android:id="@+id/v_fourth_duration"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:text="4완료시간" />
+                android:hint="4완료시간" />
 
         </LinearLayout>
 
-
     </LinearLayout>
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9" />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

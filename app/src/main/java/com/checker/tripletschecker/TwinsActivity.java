@@ -292,9 +292,15 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.description:
-                Intent intent = new Intent(this, DescriptionActivity.class);
+                intent = new Intent(this, DescriptionActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.trend:
+                intent = new Intent(this, TrendActivity.class);
                 startActivity(intent);
                 break;
 
