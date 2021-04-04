@@ -1,13 +1,11 @@
 package com.checker.tripletschecker;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -302,6 +300,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
             case R.id.trend:
                 intent = new Intent(this, TrendActivity.class);
+                intent.putExtra("DB", db);
                 startActivity(intent);
                 break;
 

@@ -8,7 +8,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class DbHelper extends SQLiteOpenHelper {
+import java.io.Serializable;
+
+public class DbHelper extends SQLiteOpenHelper implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private static final int DATABASE_VERSION = 1;
 
@@ -92,5 +96,13 @@ public class DbHelper extends SQLiteOpenHelper {
             data[7] = cursor.getString(8);
         }
         return data;
+    }
+
+    public Cursor viewData() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "Select * from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+
+        return cursor;
     }
 }
