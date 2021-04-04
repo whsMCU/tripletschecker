@@ -8,11 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import java.io.Serializable;
-
-public class DbHelper extends SQLiteOpenHelper implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class DbHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 

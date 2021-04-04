@@ -300,7 +300,6 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
             case R.id.trend:
                 intent = new Intent(this, TrendActivity.class);
-                intent.putExtra("DB", db);
                 startActivity(intent);
                 break;
 

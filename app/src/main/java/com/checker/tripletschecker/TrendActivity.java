@@ -26,14 +26,11 @@ public class TrendActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trend);
 
-        Intent intent = getIntent();
-
-        db = (DbHelper) intent.getSerializableExtra("DB");
+        db = new DbHelper(this, "twins");
 
         DataList = new ArrayList<ListData>();
 
         listView = (ListView)findViewById(R.id.v_ListView);
-        trendAdapter = new TrendAdapter(this, DataList);
 
         viewData();
 

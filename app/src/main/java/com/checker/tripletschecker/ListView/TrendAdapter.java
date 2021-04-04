@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.checker.tripletschecker.R;
 
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class TrendAdapter extends BaseAdapter {
     public TrendAdapter(Context context, ArrayList<ListData> data) {
         mContext = context;
         trend = data;
+        mLayoutInflater = LayoutInflater.from(mContext);
     }
 
     @Override
@@ -37,21 +40,21 @@ public class TrendAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        View view1 = mLayoutInflater.inflate(R.layout.activity_listview, null);
+    public View getView(int i, View convertView, ViewGroup viewGroup) {
+        View view = mLayoutInflater.inflate(R.layout.activity_listview, null);
 
-        TextView date = (TextView)view1.findViewById(R.id.v_date);
-        TextView count1 = (TextView)view1.findViewById(R.id.v_first_count);
-        TextView count2 = (TextView)view1.findViewById(R.id.v_second_count);
-        TextView count3 = (TextView)view1.findViewById(R.id.v_third_count);
-        TextView count4 = (TextView)view1.findViewById(R.id.v_fourth_count);
+        TextView date = (TextView) view.findViewById(R.id.v_date);
+        TextView count1 = (TextView) view.findViewById(R.id.v_first_count);
+        TextView count2 = (TextView) view.findViewById(R.id.v_second_count);
+        TextView count3 = (TextView) view.findViewById(R.id.v_third_count);
+        TextView count4 = (TextView) view.findViewById(R.id.v_fourth_count);
 
-        TextView start_time = (TextView)view1.findViewById(R.id.v_start_time);
+        TextView start_time = (TextView) view.findViewById(R.id.v_start_time);
 
-        TextView end_duration1 = (TextView)view1.findViewById(R.id.v_first_duration);
-        TextView end_duration2 = (TextView)view1.findViewById(R.id.v_second_count);
-        TextView end_duration3 = (TextView)view1.findViewById(R.id.v_third_count);
-        TextView end_duration4 = (TextView)view1.findViewById(R.id.v_fourth_count);
+        TextView end_duration1 = (TextView) view.findViewById(R.id.v_first_duration);
+        TextView end_duration2 = (TextView) view.findViewById(R.id.v_second_duration);
+        TextView end_duration3 = (TextView) view.findViewById(R.id.v_third_duration);
+        TextView end_duration4 = (TextView) view.findViewById(R.id.v_fourth_duration);
 
         date.setText(trend.get(i).getM_date());
         count1.setText(trend.get(i).getM_count1());
@@ -66,8 +69,6 @@ public class TrendAdapter extends BaseAdapter {
         end_duration3.setText(trend.get(i).getM_duration3());
         end_duration4.setText(trend.get(i).getM_duration4());
 
-
-
-        return null;
+        return view;
     }
 }
