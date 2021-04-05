@@ -20,13 +20,24 @@ public class TrendActivity extends AppCompatActivity {
     ArrayList<ListData> DataList;
     ListView listView;
     TrendAdapter trendAdapter;
+    String Activity_Name;
+    String Twins = new String("TwinsActivity");
+    String Triplets = new String("TripletsActivity");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trend);
 
-        db = new DbHelper(this, "twins");
+        Intent intent = getIntent();
+
+        Activity_Name = intent.getExtras().getString("Activity");
+
+        if(Activity_Name.equals(Twins)) {
+            db = new DbHelper(this, "twins");
+        }else if (Activity_Name.equals(Triplets)){
+            db = new DbHelper(this, "triplets");
+        }
 
         DataList = new ArrayList<ListData>();
 
@@ -42,7 +53,14 @@ public class TrendActivity extends AppCompatActivity {
             Toast.makeText(this, "No data to show", Toast.LENGTH_SHORT).show();
         } else {
             while(cursor.moveToNext()) {
-                DataList.add(new ListData(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8)));
+                if(Activity_Name.equals(Twins)) {
+                    DataList.add(new ListData(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                            cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8)));
+                }else if (Activity_Name.equals(Triplets)){
+                    DataList.add(new ListData(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                            cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9),
+                            cursor.getString(10), cursor.getString(11)));
+                }
             }
             trendAdapter = new TrendAdapter(this, DataList);
             listView.setAdapter(trendAdapter);

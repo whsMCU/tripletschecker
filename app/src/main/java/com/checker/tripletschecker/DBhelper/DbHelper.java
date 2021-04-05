@@ -13,7 +13,9 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     private static final String DATABASE_NAME = "database.db";
-    private static final String TABLE_NAME = "_count_data";
+
+    private static final String TABLE_NAME_TWINS = "Twin_Data";
+    private static final String TABLE_NAME_TRIPLETS = "Triplets_Data";
 
     private static final String KEY_ID = "id";
     private static final String KEY_DATE = "date";
@@ -41,24 +43,46 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String Query_Table = " CREATE TABLE " + TABLE_NAME + "(" +
-                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                KEY_DATE + " TEXT, " +
-                KEY_COUNT1 + " TEXT, " +
-                KEY_COUNT2 + " TEXT, " +
-                KEY_START_TIME + " TEXT, " +
-                KEY_END_TIME1 + " TEXT, " +
-                KEY_END_TIME2 + " TEXT, " +
-                KEY_DURATION1 + " TEXT, " +
-                KEY_DURATION2 + " TEXT)";
+        if(this.activity == "twins") {
+            String Query_Table = " CREATE TABLE " + TABLE_NAME_TWINS + "(" +
+                    KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    KEY_DATE + " TEXT, " +
+                    KEY_COUNT1 + " TEXT, " +
+                    KEY_COUNT2 + " TEXT, " +
+                    KEY_START_TIME + " TEXT, " +
+                    KEY_END_TIME1 + " TEXT, " +
+                    KEY_END_TIME2 + " TEXT, " +
+                    KEY_DURATION1 + " TEXT, " +
+                    KEY_DURATION2 + " TEXT)";
+            db.execSQL(Query_Table);
 
-        db.execSQL(Query_Table);
+        } else if(this.activity == "triplets"){
+            String Query_Table = " CREATE TABLE " + TABLE_NAME_TRIPLETS + "(" +
+                    KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    KEY_DATE + " TEXT, " +
+                    KEY_COUNT1 + " TEXT, " +
+                    KEY_COUNT2 + " TEXT, " +
+                    KEY_COUNT3 + " TEXT, " +
+                    KEY_START_TIME + " TEXT, " +
+                    KEY_END_TIME1 + " TEXT, " +
+                    KEY_END_TIME2 + " TEXT, " +
+                    KEY_END_TIME3 + " TEXT, " +
+                    KEY_DURATION1 + " TEXT, " +
+                    KEY_DURATION2 + " TEXT, " +
+                    KEY_DURATION3 + " TEXT)";
+            db.execSQL(Query_Table);
+        }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-        onCreate(db);
+        if(this.activity == "twins") {
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_TWINS);
+            onCreate(db);
+        } else if(this.activity == "triplets"){
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_TRIPLETS);
+            onCreate(db);
+        }
     }
 
     public long insertData(String date, String count1, String count2, String start_time, String end_time1, String end_time2, String duration1, String duration2) {
@@ -72,33 +96,37 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(KEY_END_TIME2, end_time2);
         values.put(KEY_DURATION1, duration1);
         values.put(KEY_DURATION2, duration2);
-        return db.insert(TABLE_NAME, null, values);
+        return db.insert(TABLE_NAME_TWINS, null, values);
     }
 
-    public String[] getData(long l) {
-        String[] data = new String[5];
-        SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = new String[]{KEY_DATE, KEY_COUNT1, KEY_COUNT2, KEY_START_TIME, KEY_END_TIME1, KEY_END_TIME2, KEY_DURATION1, KEY_DURATION2};
-        Cursor cursor = db.query(TABLE_NAME, columns, KEY_ID+"="+l,null,null,null,null);
-        if(columns !=null) {
-            cursor.moveToFirst();
-            data[0] = cursor.getString(1);
-            data[1] = cursor.getString(2);
-            data[2] = cursor.getString(3);
-            data[3] = cursor.getString(4);
-            data[4] = cursor.getString(5);
-            data[5] = cursor.getString(6);
-            data[6] = cursor.getString(7);
-            data[7] = cursor.getString(8);
-        }
-        return data;
+    public long insertData(String date, String count1, String count2, String count3, String start_time, String end_time1, String end_time2, String end_time3, String duration1, String duration2, String duration3) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_DATE, date);
+        values.put(KEY_COUNT1, count1);
+        values.put(KEY_COUNT2, count2);
+        values.put(KEY_COUNT3, count3);
+        values.put(KEY_START_TIME, start_time);
+        values.put(KEY_END_TIME1, end_time1);
+        values.put(KEY_END_TIME2, end_time2);
+        values.put(KEY_END_TIME3, end_time3);
+        values.put(KEY_DURATION1, duration1);
+        values.put(KEY_DURATION2, duration2);
+        values.put(KEY_DURATION3, duration3);
+        return db.insert(TABLE_NAME_TRIPLETS, null, values);
     }
 
     public Cursor viewData() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "Select * from " + TABLE_NAME;
-        Cursor cursor = db.rawQuery(query, null);
-
-        return cursor;
+        if(this.activity == "twins"){
+            String query = "Select * from " + TABLE_NAME_TWINS;
+            Cursor cursor = db.rawQuery(query, null);
+            return cursor;
+        }else if(this.activity == "triplets"){
+            String query = "Select * from " + TABLE_NAME_TRIPLETS;
+            Cursor cursor = db.rawQuery(query, null);
+            return cursor;
+        }
+        return null;
     }
 }
