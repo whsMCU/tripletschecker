@@ -175,4 +175,20 @@ public class DbHelper extends SQLiteOpenHelper {
         }
         return null;
     }
+
+    public boolean deleteData(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        if(this.activity.equals(new String("twins"))){
+            db.execSQL("DELETE FROM "+ TABLE_NAME_TWINS + " WHERE id = " + id);
+            return true;
+        } else if(this.activity.equals(new String("triplets"))){
+            db.execSQL("DELETE FROM "+ TABLE_NAME_TRIPLETS + " WHERE id = " + id);
+            return true;
+        } else if(this.activity.equals(new String("quadruplets"))){
+            db.execSQL("DELETE FROM "+ TABLE_NAME_QUADRUPLETS + " WHERE id = " + id);
+            return true;
+        }
+        return false;
+    }
+
 }
