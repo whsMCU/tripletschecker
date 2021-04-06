@@ -115,7 +115,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
             String data2 = savedInstanceState.getString(KEY_NUM2);
             String data3 = savedInstanceState.getString(KEY_NUM3);
             m_start = Long.parseLong(time);
-            start_time.setText(timeformet(m_start, "HH:mm:ss"));
+            start_time.setText(timeformat(m_start, "HH:mm:ss"));
             m_num1_count = Integer.parseInt(data1);
             m_num2_count = Integer.parseInt(data2);
             m_num3_count = Integer.parseInt(data3);
@@ -161,7 +161,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                         if (m_num1_count == max_movement && add1_max_flag == false) {
                             add1_max_flag = true;
                             m_end1 = System.currentTimeMillis();
-                            finish_tim1.setText(timeformet(m_end1, "HH:mm:ss"));
+                            finish_tim1.setText(timeformat(m_end1, "HH:mm:ss"));
                             time_diff1.setText(time_diff(m_start, m_end1));
                         }
                         if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement){
@@ -182,7 +182,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                         if (m_num2_count == max_movement && add2_max_flag == false) {
                             add2_max_flag = true;
                             m_end2 = System.currentTimeMillis();
-                            finish_tim2.setText(timeformet(m_end2, "HH:mm:ss"));
+                            finish_tim2.setText(timeformat(m_end2, "HH:mm:ss"));
                             time_diff2.setText(time_diff(m_start, m_end2));
                         }
                         if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement){
@@ -203,7 +203,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                         if (m_num3_count == max_movement && add3_max_flag == false) {
                             add3_max_flag = true;
                             m_end3 = System.currentTimeMillis();
-                            finish_tim3.setText(timeformet(m_end3, "HH:mm:ss"));
+                            finish_tim3.setText(timeformat(m_end3, "HH:mm:ss"));
                             time_diff3.setText(time_diff(m_start, m_end3));
                         }
                         if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement){
@@ -282,7 +282,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                 m_num3_count = 0;
             } else {
                 m_start = Long.parseLong(time);
-                start_time.setText(timeformet(m_start, "HH:mm:ss"));
+                start_time.setText(timeformat(m_start, "HH:mm:ss"));
                 m_num1_count = Integer.parseInt(data1);
                 m_num2_count = Integer.parseInt(data2);
                 m_num3_count = Integer.parseInt(data3);
@@ -333,14 +333,14 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
     public void onSave_Set(boolean m_save) {
         if(m_save == true) {
             String date, count1, count2, count3, start_time, end_time1, end_time2, end_time3,  duration1, duration2, duration3;
-            date = timeformet(m_start, "yyyy년 MM월 dd일");
+            date = timeformat(m_start, "yy년 M월 d일");
             count1 = Integer.toString(m_num1_count);
             count2 = Integer.toString(m_num2_count);
             count3 = Integer.toString(m_num3_count);
-            start_time = timeformet(m_start, "HH:mm:ss");
-            end_time1 = timeformet(m_end1, "HH:mm:ss");
-            end_time2 = timeformet(m_end2, "HH:mm:ss");
-            end_time3 = timeformet(m_end3, "HH:mm:ss");
+            start_time = timeformat(m_start, "HH:mm:ss");
+            end_time1 = timeformat(m_end1, "HH:mm:ss");
+            end_time2 = timeformat(m_end2, "HH:mm:ss");
+            end_time3 = timeformat(m_end3, "HH:mm:ss");
             duration1 = time_diff1.getText().toString();
             duration2 = time_diff2.getText().toString();
             duration3 = time_diff3.getText().toString();
@@ -485,7 +485,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                 time_diff3.setText("");
 
                 m_start = System.currentTimeMillis();
-                start_time.setText(timeformet(m_start, "HH:mm:ss"));
+                start_time.setText(timeformat(m_start, "HH:mm:ss"));
                 Toast.makeText(TripletsActivity.this, R.string.start_message, Toast.LENGTH_SHORT).show();
             }
         });
@@ -523,7 +523,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
         return returnTime;
     }
 
-    String timeformet(long time, String format){
+    String timeformat(long time, String format){
         Date date = new Date(time);
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.format(date);

@@ -270,7 +270,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
     public void onSave_Set(boolean m_save) {
         if(m_save == true) {
             String date, count1, count2, start_time, end_time1, end_time2, duration1, duration2;
-            date = timeformet(m_start, "yyyy년 MM월 dd일");
+            date = timeformet(m_start, "yy년 M월 d일");
             count1 = Integer.toString(m_num1_count);
             count2 = Integer.toString(m_num2_count);
             start_time = timeformet(m_start, "HH:mm:ss");

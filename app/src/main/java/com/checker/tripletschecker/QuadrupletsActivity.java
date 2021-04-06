@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.checker.tripletschecker.DBhelper.DbHelper;
+import com.checker.tripletschecker.Dialog.DialogFragment;
 import com.checker.tripletschecker.Dialog.SettingFragment;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -29,9 +31,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class QuadrupletsActivity extends AppCompatActivity implements SettingFragment.Max_Movement_SetListener{
+public class QuadrupletsActivity extends AppCompatActivity implements SettingFragment.Max_Movement_SetListener, DialogFragment.Save_Listener{
 
     private AdView mAdView;
+
+    DbHelper db;
 
     static final String KEY_TIME = "KEY_TIME";
     static final String KEY_NUM1 = "KEY_NUM1";
@@ -112,6 +116,8 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
 
         start_button = (Button) findViewById(R.id.start_Button);
 
+        db = new DbHelper(this, "quadruplets");
+
         if (savedInstanceState != null) {
             String time = savedInstanceState.getString(KEY_TIME);
             String data1 = savedInstanceState.getString(KEY_NUM1);
@@ -146,7 +152,7 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
             time_diff3.setText(time_diff_3);
             time_diff4.setText(time_diff_4);
 
-            max_movement = savedInstanceState.getInt(KEY_MAX_MOVEMENT);
+            max_movement = savedInstanceState.getInt(KEY_MAX_MOVEMENT, 10);
         }
         restoreData();
 
@@ -174,6 +180,9 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                             finish_tim1.setText(timeformat(m_end1, "HH:mm:ss"));
                             time_diff1.setText(time_diff(m_start, m_end1));
                         }
+                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && m_num4_count == max_movement){
+                            showMessage_Save();
+                        }
                         break;
 
                     case R.id.number2_add:
@@ -191,6 +200,9 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                             m_end2 = System.currentTimeMillis();
                             finish_tim2.setText(timeformat(m_end2, "HH:mm:ss"));
                             time_diff2.setText(time_diff(m_start, m_end2));
+                        }
+                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && m_num4_count == max_movement){
+                            showMessage_Save();
                         }
                         break;
 
@@ -210,6 +222,9 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                             finish_tim3.setText(timeformat(m_end3, "HH:mm:ss"));
                             time_diff3.setText(time_diff(m_start, m_end3));
                         }
+                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && m_num4_count == max_movement){
+                            showMessage_Save();
+                        }
                         break;
 
                     case R.id.number4_add:
@@ -227,6 +242,9 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                             m_end4 = System.currentTimeMillis();
                             finish_tim4.setText(timeformat(m_end4, "HH:mm:ss"));
                             time_diff4.setText(time_diff(m_start, m_end4));
+                        }
+                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && m_num4_count == max_movement){
+                            showMessage_Save();
                         }
                         break;
 
@@ -378,6 +396,29 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
     }
 
     @Override
+    public void onSave_Set(boolean m_save) {
+        if(m_save == true) {
+            String date, count1, count2, count3, count4, start_time, end_time1, end_time2, end_time3, end_time4, duration1, duration2, duration3, duration4;
+            date = timeformat(m_start, "yy년 M월 d일");
+            count1 = Integer.toString(m_num1_count);
+            count2 = Integer.toString(m_num2_count);
+            count3 = Integer.toString(m_num3_count);
+            count4 = Integer.toString(m_num4_count);
+            start_time = timeformat(m_start, "HH:mm:ss");
+            end_time1 = timeformat(m_end1, "HH:mm:ss");
+            end_time2 = timeformat(m_end2, "HH:mm:ss");
+            end_time3 = timeformat(m_end3, "HH:mm:ss");
+            end_time4 = timeformat(m_end4, "HH:mm:ss");
+            duration1 = time_diff1.getText().toString();
+            duration2 = time_diff2.getText().toString();
+            duration3 = time_diff3.getText().toString();
+            duration4 = time_diff4.getText().toString();
+            db.insertData(date, count1, count2, count3, count4, start_time, end_time1, end_time2, end_time3, end_time4, duration1, duration2, duration3, duration4);
+            Toast.makeText(QuadrupletsActivity.this, "저장완료", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_option, menu);
         return super.onCreateOptionsMenu(menu);
@@ -385,9 +426,16 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
         switch(item.getItemId()){
             case R.id.description:
-                Intent intent = new Intent(this, DescriptionActivity.class);
+                intent = new Intent(this, DescriptionActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.trend:
+                intent = new Intent(this, TrendActivity.class);
+                intent.putExtra("Activity", "QuadrupletsActivity");
                 startActivity(intent);
                 break;
 
@@ -544,6 +592,10 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void showMessage_Save() {
+        new DialogFragment().show(getSupportFragmentManager(),"DialogFragment");
     }
 
     String time_diff(long start_time, long m_end_time) {
