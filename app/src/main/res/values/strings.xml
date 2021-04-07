@@ -40,4 +40,19 @@
     <string name="triplets_title">Triplets Kick Checker</string>
     <string name="quadruplets_title">Quadruplets Kick Checker</string>
     <string name="max_movement_value">Maximum Kick Count Setting</string>
+    <string name="history">HISTORY</string>
+    <string name="date">DATE</string>
+    <string name="count_first">FirstBorn</string>
+    <string name="count_second">SecondBorn</string>
+    <string name="count_third">ThirdBorn</string>
+    <string name="count_fourth">FourthBorn</string>
+    <string name="duration_first">Duration_1</string>
+    <string name="duration_second">Duration_2</string>
+    <string name="duration_third">Duration_3</string>
+    <string name="duration_fourth">Duration_4</string>
+    <string name="delete">DELETE</string>
+    <string name="delete_message">Deleted Successfully.</string>
+    <string name="no_data">No Data To Show</string>
+    <string name="db_save">DataBase Save</string>
+    <string name="db_save_message">Do you want to save the data?</string>
 </resources>

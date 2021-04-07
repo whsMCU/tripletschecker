@@ -41,4 +41,19 @@
     <string name="triplets_title">세쌍둥이 태동 체크</string>
     <string name="quadruplets_title">네쌍둥이 태동 체크</string>
     <string name="max_movement_value">최대 태동 횟수 설정</string>
+    <string name="history">HISTORY</string>
+    <string name="date">날짜</string>
+    <string name="count_first">첫째 태동수</string>
+    <string name="count_second">둘째 태동수</string>
+    <string name="count_third">셋째 태동수</string>
+    <string name="count_fourth">넷째 태동수</string>
+    <string name="duration_first">소요시간</string>
+    <string name="duration_second">소요시간</string>
+    <string name="duration_third">소요시간</string>
+    <string name="duration_fourth">소요시간</string>
+    <string name="delete">삭제</string>
+    <string name="delete_message">삭제 되었습니다.</string>
+    <string name="no_data">데이터가 없습니다.</string>
+    <string name="db_save">데이터베이스 저장</string>
+    <string name="db_save_message">데이터를 저장하시겠습니까?</string>
 </resources>

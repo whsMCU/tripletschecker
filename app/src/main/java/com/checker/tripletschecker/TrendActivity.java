@@ -55,18 +55,18 @@ public class TrendActivity extends AppCompatActivity implements PopupMenu.OnMenu
     private void viewData() {
         Cursor cursor = db.viewData();
         if (cursor.getCount() == 0) {
-            Toast.makeText(this, "No data to show", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_data, Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
                 if (Activity_Name.equals(new String("TwinsActivity"))) {
-                    DataList.add(new ListData(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                    DataList.add(new ListData(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
                             cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8)));
                 } else if (Activity_Name.equals(new String("TripletsActivity"))) {
-                    DataList.add(new ListData(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                    DataList.add(new ListData(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
                             cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9),
                             cursor.getString(10), cursor.getString(11)));
                 } else if (Activity_Name.equals(new String("QuadrupletsActivity"))) {
-                    DataList.add(new ListData(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                    DataList.add(new ListData(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
                             cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9),
                             cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14)));
                 }
@@ -77,7 +77,7 @@ public class TrendActivity extends AppCompatActivity implements PopupMenu.OnMenu
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                     db_position = position;
-                    PopupMenu popupMenu = new PopupMenu(getApplicationContext(), listView);
+                    PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
                     popupMenu.inflate(R.menu.trend_popup_menu);
                     popupMenu.show();
                     popupMenu.setOnMenuItemClickListener(TrendActivity.this);
@@ -91,10 +91,10 @@ public class TrendActivity extends AppCompatActivity implements PopupMenu.OnMenu
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.delete:
-                db.deleteData(db_position);
+                db.deleteData(DataList, db_position);
                 DataList.clear();
                 viewData();
-                Toast.makeText(TrendActivity.this, "삭제 되었습니다." + db_position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(TrendActivity.this, R.string.delete_message, Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return false;

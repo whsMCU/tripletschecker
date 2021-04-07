@@ -16,7 +16,7 @@
         android:background="@drawable/edge"
         android:foregroundGravity="center"
         android:gravity="center_horizontal"
-        android:text="과거이력"
+        android:text="@string/history"
         android:textColor="@color/black"
         android:textSize="50dp" />
 
@@ -41,35 +41,40 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:hint="날짜" />
+                android:background="@drawable/edge"
+                android:text="@string/date" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:hint="1카운트" />
+                android:background="@drawable/edge"
+                android:text="@string/count_first" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:hint="2카운트" />
+                android:background="@drawable/edge"
+                android:text="@string/count_second" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:hint="3카운트" />
+                android:background="@drawable/edge"
+                android:text="@string/count_third" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:hint="4카운트" />
+                android:background="@drawable/edge"
+                android:text="@string/count_fourth" />
 
         </LinearLayout>
 
@@ -85,35 +90,40 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:text="시작시간" />
+                android:background="@drawable/edge"
+                android:text="@string/strat_time" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:hint="1완료시간" />
+                android:background="@drawable/edge"
+                android:hint="@string/duration_first" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:hint="2완료시간" />
+                android:background="@drawable/edge"
+                android:hint="@string/duration_second" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:text="3완료시간" />
+                android:background="@drawable/edge"
+                android:text="@string/duration_third" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:text="4완료시간" />
+                android:background="@drawable/edge"
+                android:text="@string/duration_fourth" />
 
         </LinearLayout>
 

@@ -5,8 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.checker.tripletschecker.ListView.ListData;
+import com.checker.tripletschecker.TrendActivity;
+
+import java.util.ArrayList;
 
 public class DbHelper extends SQLiteOpenHelper {
 
@@ -176,16 +183,16 @@ public class DbHelper extends SQLiteOpenHelper {
         return null;
     }
 
-    public boolean deleteData(int id) {
+    public boolean deleteData(ArrayList<ListData> data, int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         if(this.activity.equals(new String("twins"))){
-            db.execSQL("DELETE FROM "+ TABLE_NAME_TWINS + " WHERE id = " + id);
+            db.execSQL("DELETE FROM "+ TABLE_NAME_TWINS + " WHERE id = " + data.get(id).getM_id());
             return true;
         } else if(this.activity.equals(new String("triplets"))){
-            db.execSQL("DELETE FROM "+ TABLE_NAME_TRIPLETS + " WHERE id = " + id);
+            db.execSQL("DELETE FROM "+ TABLE_NAME_TRIPLETS + " WHERE id = " + data.get(id).getM_id());
             return true;
         } else if(this.activity.equals(new String("quadruplets"))){
-            db.execSQL("DELETE FROM "+ TABLE_NAME_QUADRUPLETS + " WHERE id = " + id);
+            db.execSQL("DELETE FROM "+ TABLE_NAME_QUADRUPLETS + " WHERE id = " + data.get(id).getM_id());
             return true;
         }
         return false;

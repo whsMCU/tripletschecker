@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.checker.tripletschecker.R;
+
 public class DialogFragment extends androidx.fragment.app.DialogFragment {
 
     boolean m_save;
@@ -25,8 +27,8 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("DB 저장");
-        builder.setMessage("기록을 저장하시겠습니까?");
+        builder.setTitle(R.string.db_save);
+        builder.setMessage(R.string.db_save_message);
         builder.setCancelable(false);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override

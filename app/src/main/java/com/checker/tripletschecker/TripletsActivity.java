@@ -54,7 +54,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
     long m_start = 0;
     long m_end1 = 0, m_end2 = 0, m_end3 = 0;
     int max_movement = 10;
-    boolean add1_max_flag, add2_max_flag, add3_max_flag;
+    boolean add1_max_flag = true, add2_max_flag = true, add3_max_flag = true, add1_db_flag = true, add2_db_flag = true, add3_db_flag = true;
 
     private long m_backKeyPressedTime = 0;
 
@@ -155,6 +155,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                         }
                         if (m_num1_count < max_movement) {
                             add1_max_flag = false;
+                            add1_db_flag = false;
                             m_num1_count += 1;
                         }
                         num1.setText(Integer.toString(m_num1_count));
@@ -164,7 +165,8 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                             finish_tim1.setText(timeformat(m_end1, "HH:mm:ss"));
                             time_diff1.setText(time_diff(m_start, m_end1));
                         }
-                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement){
+                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && add1_db_flag == false){
+                            add1_db_flag = true;
                             showMessage_Save();
                         }
                         break;
@@ -176,6 +178,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                         }
                         if (m_num2_count < max_movement) {
                             add2_max_flag = false;
+                            add2_db_flag = false;
                             m_num2_count += 1;
                         }
                         num2.setText(Integer.toString(m_num2_count));
@@ -185,7 +188,8 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                             finish_tim2.setText(timeformat(m_end2, "HH:mm:ss"));
                             time_diff2.setText(time_diff(m_start, m_end2));
                         }
-                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement){
+                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && add2_db_flag == false){
+                            add2_db_flag = true;
                             showMessage_Save();
                         }
                         break;
@@ -197,6 +201,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                         }
                         if (m_num3_count < max_movement) {
                             add3_max_flag = false;
+                            add3_db_flag = false;
                             m_num3_count += 1;
                         }
                         num3.setText(Integer.toString(m_num3_count));
@@ -206,7 +211,8 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
                             finish_tim3.setText(timeformat(m_end3, "HH:mm:ss"));
                             time_diff3.setText(time_diff(m_start, m_end3));
                         }
-                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement){
+                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && add3_db_flag == false){
+                            add3_db_flag = true;
                             showMessage_Save();
                         }
                         break;
@@ -333,7 +339,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
     public void onSave_Set(boolean m_save) {
         if(m_save == true) {
             String date, count1, count2, count3, start_time, end_time1, end_time2, end_time3,  duration1, duration2, duration3;
-            date = timeformat(m_start, "yy년 M월 d일");
+            date = timeformat(m_start, "yy.M.d.");
             count1 = Integer.toString(m_num1_count);
             count2 = Integer.toString(m_num2_count);
             count3 = Integer.toString(m_num3_count);
@@ -345,7 +351,7 @@ public class TripletsActivity extends AppCompatActivity implements SettingFragme
             duration2 = time_diff2.getText().toString();
             duration3 = time_diff3.getText().toString();
             db.insertData(date, count1, count2, count3, start_time, end_time1, end_time2, end_time3, duration1, duration2, duration3);
-            Toast.makeText(TripletsActivity.this, "저장완료", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TripletsActivity.this, R.string.db_save, Toast.LENGTH_SHORT).show();
         }
     }
 

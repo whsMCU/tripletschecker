@@ -2,12 +2,13 @@ package com.checker.tripletschecker.ListView;
 
 public class ListData {
 
-String m_date, m_count1, m_count2, m_count3, m_count4, m_start_time,
+String m_id, m_date, m_count1, m_count2, m_count3, m_count4, m_start_time,
         m_end_time1, m_end_time2, m_end_time3, m_end_time4,
         m_duration1, m_duration2, m_duration3, m_duration4;
 
-    public ListData(String m_date, String m_count1, String m_count2, String m_start_time,
+    public ListData(String m_id, String m_date, String m_count1, String m_count2, String m_start_time,
                     String m_end_time1, String m_end_time2, String m_duration1, String m_duration2) {
+        this.m_id = m_id;
         this.m_date = m_date;
         this.m_count1 = m_count1;
         this.m_count2 = m_count2;
@@ -18,9 +19,10 @@ String m_date, m_count1, m_count2, m_count3, m_count4, m_start_time,
         this.m_duration2 = m_duration2;
     }
 
-    public ListData(String m_date, String m_count1, String m_count2, String m_count3,
+    public ListData(String m_id, String m_date, String m_count1, String m_count2, String m_count3,
                     String m_start_time, String m_end_time1, String m_end_time2, String m_end_time3,
                     String m_duration1, String m_duration2, String m_duration3) {
+        this.m_id = m_id;
         this.m_date = m_date;
         this.m_count1 = m_count1;
         this.m_count2 = m_count2;
@@ -34,9 +36,10 @@ String m_date, m_count1, m_count2, m_count3, m_count4, m_start_time,
         this.m_duration3 = m_duration3;
     }
 
-    public ListData(String m_date, String m_count1, String m_count2, String m_count3, String m_count4,
+    public ListData(String m_id, String m_date, String m_count1, String m_count2, String m_count3, String m_count4,
                     String m_start_time, String m_end_time1, String m_end_time2, String m_end_time3, String m_end_time4,
                     String m_duration1, String m_duration2, String m_duration3, String m_duration4) {
+        this.m_id = m_id;
         this.m_date = m_date;
         this.m_count1 = m_count1;
         this.m_count2 = m_count2;
@@ -51,6 +54,14 @@ String m_date, m_count1, m_count2, m_count3, m_count4, m_start_time,
         this.m_duration2 = m_duration2;
         this.m_duration3 = m_duration3;
         this.m_duration4 = m_duration4;
+    }
+
+    public String getM_id() {
+        return m_id;
+    }
+
+    public void setM_id(String m_id) {
+        this.m_id = m_id;
     }
 
     public String getM_date() {
