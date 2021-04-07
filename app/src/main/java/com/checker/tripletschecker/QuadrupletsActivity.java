@@ -58,7 +58,7 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
     long m_start = 0;
     long m_end1 = 0, m_end2 = 0, m_end3 = 0, m_end4 = 0;
     int max_movement = 10;
-    boolean add1_max_flag = true, add2_max_flag = true, add3_max_flag = true, add4_max_flag = true, add1_db_flag = true, add2_db_flag = true, add3_db_flag = true, add4_db_flag = true;
+    boolean add1_max_flag, add2_max_flag, add3_max_flag, add4_max_flag, add_db_flag;
 
     private long m_backKeyPressedTime = 0;
 
@@ -116,6 +116,12 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
 
         start_button = (Button) findViewById(R.id.start_Button);
 
+        add1_max_flag = true;
+        add2_max_flag = true;
+        add3_max_flag = true;
+        add4_max_flag = true;
+        add_db_flag = true;
+
         db = new DbHelper(this, "quadruplets");
 
         if (savedInstanceState != null) {
@@ -171,7 +177,7 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                         }
                         if (m_num1_count < max_movement) {
                             add1_max_flag = false;
-                            add1_db_flag = false;
+                            add_db_flag = false;
                             m_num1_count += 1;
                         }
                         num1.setText(Integer.toString(m_num1_count));
@@ -181,8 +187,8 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                             finish_tim1.setText(timeformat(m_end1, "HH:mm:ss"));
                             time_diff1.setText(time_diff(m_start, m_end1));
                         }
-                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && m_num4_count == max_movement && add1_db_flag == false){
-                            add1_db_flag = true;
+                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && m_num4_count == max_movement && add_db_flag == false){
+                            add_db_flag = true;
                             showMessage_Save();
                         }
                         break;
@@ -194,7 +200,7 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                         }
                         if (m_num2_count < max_movement) {
                             add2_max_flag = false;
-                            add2_db_flag = false;
+                            add_db_flag = false;
                             m_num2_count += 1;
                         }
                         num2.setText(Integer.toString(m_num2_count));
@@ -204,8 +210,8 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                             finish_tim2.setText(timeformat(m_end2, "HH:mm:ss"));
                             time_diff2.setText(time_diff(m_start, m_end2));
                         }
-                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && m_num4_count == max_movement && add2_db_flag == false){
-                            add2_db_flag = true;
+                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && m_num4_count == max_movement && add_db_flag == false){
+                            add_db_flag = true;
                             showMessage_Save();
                         }
                         break;
@@ -217,7 +223,7 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                         }
                         if (m_num3_count < max_movement) {
                             add3_max_flag = false;
-                            add3_db_flag = false;
+                            add_db_flag = false;
                             m_num3_count += 1;
                         }
                         num3.setText(Integer.toString(m_num3_count));
@@ -227,8 +233,8 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                             finish_tim3.setText(timeformat(m_end3, "HH:mm:ss"));
                             time_diff3.setText(time_diff(m_start, m_end3));
                         }
-                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && m_num4_count == max_movement && add3_db_flag == false){
-                            add3_db_flag = true;
+                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && m_num4_count == max_movement && add_db_flag == false){
+                            add_db_flag = true;
                             showMessage_Save();
                         }
                         break;
@@ -240,7 +246,7 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                         }
                         if (m_num4_count < max_movement) {
                             add4_max_flag = false;
-                            add4_db_flag = false;
+                            add_db_flag = false;
                             m_num4_count += 1;
                         }
                         num4.setText(Integer.toString(m_num4_count));
@@ -250,8 +256,8 @@ public class QuadrupletsActivity extends AppCompatActivity implements SettingFra
                             finish_tim4.setText(timeformat(m_end4, "HH:mm:ss"));
                             time_diff4.setText(time_diff(m_start, m_end4));
                         }
-                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && m_num4_count == max_movement && add4_db_flag == false){
-                            add4_db_flag = true;
+                        if(m_num1_count == max_movement && m_num2_count == max_movement && m_num3_count == max_movement && m_num4_count == max_movement && add_db_flag == false){
+                            add_db_flag = true;
                             showMessage_Save();
                         }
                         break;

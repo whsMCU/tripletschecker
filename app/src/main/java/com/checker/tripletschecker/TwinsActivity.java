@@ -51,7 +51,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
     long m_start = 0;
     long m_end1 = 0, m_end2 = 0;
     int max_movement = 10;
-    boolean add1_max_flag = true, add2_max_flag = true, add1_db_flag = true, add2_db_flag = true;
+    boolean add1_max_flag, add2_max_flag, add_db_flag;
 
     private long m_backKeyPressedTime = 0;
 
@@ -99,6 +99,10 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
 
         start_button = (Button) findViewById(R.id.start_Button);
 
+        add1_max_flag = true;
+        add2_max_flag = true;
+        add_db_flag = true;
+
         db = new DbHelper(this, "twins");
 
         if (savedInstanceState != null) {
@@ -106,7 +110,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
             String data1 = savedInstanceState.getString(KEY_NUM1);
             String data2 = savedInstanceState.getString(KEY_NUM2);
             m_start = Long.parseLong(time);
-            start_time.setText(timeformet(m_start, "HH:mm:ss"));
+            start_time.setText(timeformat(m_start, "HH:mm:ss"));
             m_num1_count = Integer.parseInt(data1);
             m_num2_count = Integer.parseInt(data2);
             num1.setText(data1);
@@ -140,18 +144,18 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
                         }
                         if (m_num1_count < max_movement) {
                             add1_max_flag = false;
-                            add1_db_flag = false;
+                            add_db_flag = false;
                             m_num1_count += 1;
                         }
                         num1.setText(Integer.toString(m_num1_count));
                         if (m_num1_count == max_movement && add1_max_flag == false) {
                             add1_max_flag = true;
                             m_end1 = System.currentTimeMillis();
-                            finish_tim1.setText(timeformet(m_end1, "HH:mm:ss"));
+                            finish_tim1.setText(timeformat(m_end1, "HH:mm:ss"));
                             time_diff1.setText(time_diff(m_start, m_end1));
                         }
-                        if(m_num1_count == max_movement && m_num2_count == max_movement && add1_db_flag == false){
-                            add1_db_flag = true;
+                        if(m_num1_count == max_movement && m_num2_count == max_movement && add_db_flag == false){
+                            add_db_flag = true;
                             showMessage_Save();
                         }
                         break;
@@ -163,18 +167,18 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
                         }
                         if (m_num2_count < max_movement) {
                             add2_max_flag = false;
-                            add2_db_flag = false;
+                            add_db_flag = false;
                             m_num2_count += 1;
                         }
                         num2.setText(Integer.toString(m_num2_count));
                         if (m_num2_count == max_movement && add2_max_flag == false) {
                             add2_max_flag = true;
                             m_end2 = System.currentTimeMillis();
-                            finish_tim2.setText(timeformet(m_end2, "HH:mm:ss"));
+                            finish_tim2.setText(timeformat(m_end2, "HH:mm:ss"));
                             time_diff2.setText(time_diff(m_start, m_end2));
                         }
-                        if(m_num1_count == max_movement && m_num2_count == max_movement && add2_db_flag == false){
-                            add2_db_flag = true;
+                        if(m_num1_count == max_movement && m_num2_count == max_movement && add_db_flag == false){
+                            add_db_flag = true;
                             showMessage_Save();
                         }
                         break;
@@ -233,7 +237,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
                 m_num2_count = 0;
             } else {
                 m_start = Long.parseLong(time);
-                start_time.setText(timeformet(m_start, "HH:mm:ss"));
+                start_time.setText(timeformat(m_start, "HH:mm:ss"));
                 m_num1_count = Integer.parseInt(data1);
                 m_num2_count = Integer.parseInt(data2);
                 num1.setText(data1);
@@ -274,12 +278,12 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
     public void onSave_Set(boolean m_save) {
         if(m_save == true) {
             String date, count1, count2, start_time, end_time1, end_time2, duration1, duration2;
-            date = timeformet(m_start, "yy.M.d.");
+            date = timeformat(m_start, "yy.M.d.");
             count1 = Integer.toString(m_num1_count);
             count2 = Integer.toString(m_num2_count);
-            start_time = timeformet(m_start, "HH:mm:ss");
-            end_time1 = timeformet(m_end1, "HH:mm:ss");
-            end_time2 = timeformet(m_end2, "HH:mm:ss");
+            start_time = timeformat(m_start, "HH:mm:ss");
+            end_time1 = timeformat(m_end1, "HH:mm:ss");
+            end_time2 = timeformat(m_end2, "HH:mm:ss");
             duration1 = time_diff1.getText().toString();
             duration2 = time_diff2.getText().toString();
             db.insertData(date, count1, count2, start_time, end_time1, end_time2, duration1, duration2);
@@ -407,7 +411,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
                 time_diff2.setText("");
 
                 m_start = System.currentTimeMillis();
-                start_time.setText(timeformet(m_start, "HH:mm:ss"));
+                start_time.setText(timeformat(m_start, "HH:mm:ss"));
                 Toast.makeText(TwinsActivity.this, R.string.start_message, Toast.LENGTH_SHORT).show();
             }
         });
@@ -445,7 +449,7 @@ public class TwinsActivity extends AppCompatActivity implements SettingFragment.
         return returnTime;
     }
 
-    String timeformet(long time, String format) {
+    String timeformat(long time, String format) {
         Date date = new Date(time);
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.format(date);
