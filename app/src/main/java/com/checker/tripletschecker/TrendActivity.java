@@ -71,20 +71,20 @@ public class TrendActivity extends AppCompatActivity implements PopupMenu.OnMenu
                             cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14)));
                 }
             }
-            trendAdapter = new TrendAdapter(this, DataList);
-            listView.setAdapter(trendAdapter);
-            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                    db_position = position;
-                    PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
-                    popupMenu.inflate(R.menu.trend_popup_menu);
-                    popupMenu.show();
-                    popupMenu.setOnMenuItemClickListener(TrendActivity.this);
-                    return true;
-                }
-            });
         }
+        trendAdapter = new TrendAdapter(this, DataList);
+        listView.setAdapter(trendAdapter);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                db_position = position;
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
+                popupMenu.inflate(R.menu.trend_popup_menu);
+                popupMenu.show();
+                popupMenu.setOnMenuItemClickListener(TrendActivity.this);
+                return true;
+            }
+        });
     }
 
     @Override
