@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         quadruplets_button = (Button) findViewById(R.id.bt_Quad);
 
         appUpdateManager = AppUpdateManagerFactory.create(getApplicationContext());
+        appUpdateManager.registerListener(listener);
         Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
         appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
@@ -91,9 +92,12 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IntentSender.SendIntentException e) {
                     e.printStackTrace();
                 }
+            } else if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
+                //CHECK THIS if AppUpdateType.FLEXIBLE, otherwise you can skip
+                popupSnackbarForCompleteUpdate();
             }
         });
-        appUpdateManager.registerListener(listener);
+
 
         View.OnClickListener Listener = new Button.OnClickListener() {
             Intent intent;
@@ -125,15 +129,20 @@ public class MainActivity extends AppCompatActivity {
 
     private InstallStateUpdatedListener listener = state -> {
         // (Optional) Provide a download progress bar.
-        if (state.installStatus() == InstallStatus.INSTALLED){
-            popupSnackbarForCompleteUpdate();
-        }
         if (state.installStatus() == InstallStatus.DOWNLOADING) {
             long bytesDownloaded = state.bytesDownloaded();
             long totalBytesToDownload = state.totalBytesToDownload();
             // Implement progress bar.
+        } else if (state.installStatus() == InstallStatus.DOWNLOADED) {
+            popupSnackbarForCompleteUpdate();
+        } else if (state.installStatus() == InstallStatus.INSTALLED) {
+            if (appUpdateManager != null) {
+                //appUpdateManager.unregisterListener(listener);
+            }
         }
+
         // Log state or install the update.
+
     };
 
     @Override
@@ -156,7 +165,11 @@ public class MainActivity extends AppCompatActivity {
                         findViewById(R.id.content),
                         "An update has just been downloaded.",
                         Snackbar.LENGTH_INDEFINITE);
-        snackbar.setAction("RESTART", view -> appUpdateManager.completeUpdate());
+        snackbar.setAction("RESTART", view -> {
+            if (appUpdateManager != null) {
+                appUpdateManager.completeUpdate();
+            }
+        });
         snackbar.setActionTextColor(
                 getResources().getColor(R.color.purple_500));
         snackbar.show();
@@ -165,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if(appUpdateManager != null){
+        if (appUpdateManager != null) {
             appUpdateManager.unregisterListener(listener);
         }
     }
@@ -176,8 +189,6 @@ public class MainActivity extends AppCompatActivity {
         appUpdateManager
                 .getAppUpdateInfo()
                 .addOnSuccessListener(appUpdateInfo -> {
-                    // If the update is downloaded but not installed,
-                    // notify the user to complete the update.
                     if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
                         popupSnackbarForCompleteUpdate();
                     }
