@@ -41,9 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private AdView mAdView;
 
-    AppUpdateManager mAppUpdateManager;
-
-    private int RC_APP_UPDATE = 155;
+    AppUpdateManager appUpdateManager;
+    private static final int MY_REQUEST_CODE = 100;
 
     Button twins_button, triplets_button, quadruplets_button;
 
@@ -73,24 +72,28 @@ public class MainActivity extends AppCompatActivity {
         triplets_button = (Button) findViewById(R.id.bt_Triple);
         quadruplets_button = (Button) findViewById(R.id.bt_Quad);
 
-        mAppUpdateManager = AppUpdateManagerFactory.create(this);
-        mAppUpdateManager.registerListener(installStateUpdatedListener);
-        mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(appUpdateInfo -> {
+        appUpdateManager = AppUpdateManagerFactory.create(getApplicationContext());
+        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
+        appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
                     && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
                 try {
-                    mAppUpdateManager.startUpdateFlowForResult(
-                            appUpdateInfo, AppUpdateType.FLEXIBLE, MainActivity.this, RC_APP_UPDATE);
+                    appUpdateManager.startUpdateFlowForResult(
+                            // Pass the intent that is returned by 'getAppUpdateInfo()'.
+                            appUpdateInfo,
+                            // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
+                            AppUpdateType.FLEXIBLE,
+                            // The current activity making the update request.
+                            MainActivity.this,
+                            // Include a request code to later monitor this update request.
+                            MY_REQUEST_CODE
+                    );
                 } catch (IntentSender.SendIntentException e) {
                     e.printStackTrace();
                 }
-            } else if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
-                popupSnackbarForCompleteUpdate();
-            } else {
-                Log.e(TAG, "checkForAppUpdateAvailability: something else");
             }
         });
-
+        appUpdateManager.registerListener(listener);
 
         View.OnClickListener Listener = new Button.OnClickListener() {
             Intent intent;
@@ -120,45 +123,65 @@ public class MainActivity extends AppCompatActivity {
         quadruplets_button.setOnClickListener(Listener);
     }
 
-    InstallStateUpdatedListener installStateUpdatedListener = new
-            InstallStateUpdatedListener() {
-                @Override
-                public void onStateUpdate(InstallState state) {
-                    if (state.installStatus() == InstallStatus.DOWNLOADED) {
-                        popupSnackbarForCompleteUpdate();
-                    } else if (state.installStatus() == InstallStatus.INSTALLED) {
-                        if (mAppUpdateManager != null) {
-                            mAppUpdateManager.unregisterListener(installStateUpdatedListener);
-                        }
-                    } else {
-                        Log.i(TAG, "InstallStateUpdatedListener: state: " + state.installStatus());
-                    }
-                }
-            };
+    private InstallStateUpdatedListener listener = state -> {
+        // (Optional) Provide a download progress bar.
+        if (state.installStatus() == InstallStatus.INSTALLED){
+            popupSnackbarForCompleteUpdate();
+        }
+        if (state.installStatus() == InstallStatus.DOWNLOADING) {
+            long bytesDownloaded = state.bytesDownloaded();
+            long totalBytesToDownload = state.totalBytesToDownload();
+            // Implement progress bar.
+        }
+        // Log state or install the update.
+    };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_APP_UPDATE) {
+        if (requestCode == MY_REQUEST_CODE) {
             if (resultCode != RESULT_OK) {
-                Log.e(TAG, "onActivityResult: app download failed");
+                Log.d(TAG, "Update flow failed! Result code: " + resultCode);
+                // If the update is cancelled or fails,
+                // you can request to start the update again.
             }
         }
     }
 
+    /* Displays the snackbar notification and call to action. */
     private void popupSnackbarForCompleteUpdate() {
+        Toast.makeText(this, "An update has just been downloaded.", Toast.LENGTH_SHORT).show();
         Snackbar snackbar =
                 Snackbar.make(
-                        findViewById(R.id.adView),
-                        "New app is ready!",
+                        findViewById(R.id.content),
+                        "An update has just been downloaded.",
                         Snackbar.LENGTH_INDEFINITE);
-        snackbar.setAction("Install", view -> {
-            if (mAppUpdateManager != null) {
-                mAppUpdateManager.completeUpdate();
-            }
-        });
-        snackbar.setActionTextColor(getResources().getColor(R.color.purple_500));
+        snackbar.setAction("RESTART", view -> appUpdateManager.completeUpdate());
+        snackbar.setActionTextColor(
+                getResources().getColor(R.color.purple_500));
         snackbar.show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(appUpdateManager != null){
+            appUpdateManager.unregisterListener(listener);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        appUpdateManager
+                .getAppUpdateInfo()
+                .addOnSuccessListener(appUpdateInfo -> {
+                    // If the update is downloaded but not installed,
+                    // notify the user to complete the update.
+                    if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
+                        popupSnackbarForCompleteUpdate();
+                    }
+                });
     }
 
     @Override
