@@ -80,24 +80,18 @@ public class MainActivity extends AppCompatActivity {
                     && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
                 try {
                     appUpdateManager.startUpdateFlowForResult(
-                            // Pass the intent that is returned by 'getAppUpdateInfo()'.
                             appUpdateInfo,
-                            // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
                             AppUpdateType.FLEXIBLE,
-                            // The current activity making the update request.
                             MainActivity.this,
-                            // Include a request code to later monitor this update request.
                             MY_REQUEST_CODE
                     );
                 } catch (IntentSender.SendIntentException e) {
                     e.printStackTrace();
                 }
             } else if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
-                //CHECK THIS if AppUpdateType.FLEXIBLE, otherwise you can skip
                 popupSnackbarForCompleteUpdate();
             }
         });
-
 
         View.OnClickListener Listener = new Button.OnClickListener() {
             Intent intent;
@@ -140,9 +134,6 @@ public class MainActivity extends AppCompatActivity {
                 //appUpdateManager.unregisterListener(listener);
             }
         }
-
-        // Log state or install the update.
-
     };
 
     @Override
@@ -159,19 +150,18 @@ public class MainActivity extends AppCompatActivity {
 
     /* Displays the snackbar notification and call to action. */
     private void popupSnackbarForCompleteUpdate() {
-        Toast.makeText(this, "An update has just been downloaded.", Toast.LENGTH_SHORT).show();
         Snackbar snackbar =
                 Snackbar.make(
-                        findViewById(R.id.content),
-                        "An update has just been downloaded.",
+                        findViewById(R.id.imageView),
+                        R.string.installed,
                         Snackbar.LENGTH_INDEFINITE);
-        snackbar.setAction("RESTART", view -> {
+        snackbar.setAction(R.string.install, view -> {
             if (appUpdateManager != null) {
                 appUpdateManager.completeUpdate();
             }
         });
         snackbar.setActionTextColor(
-                getResources().getColor(R.color.purple_500));
+                getResources().getColor(R.color.teal_200));
         snackbar.show();
     }
 

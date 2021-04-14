@@ -55,4 +55,6 @@
     <string name="no_data">No Data To Show</string>
     <string name="db_save">DataBase Save</string>
     <string name="db_save_message">Do you want to save the data?</string>
+    <string name="install">INSTALL</string>
+    <string name="installed">An update has just been downloaded.</string>
 </resources>
